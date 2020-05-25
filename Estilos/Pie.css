@@ -1,0 +1,13 @@
+footer {
+    font-family: sans-serif;
+    width: 100%;
+    background: #000000;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+footer p{
+    padding: 10px;
+}
