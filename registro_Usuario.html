@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vainglory Community Edition</title>
+    
+</head>
+
+<body>
+    <h1 align="center">Formulario de Registro VainCE</h1>
+    <p></p>
+    <div id="register" class="form" align="center">
+        <table width="350" cellspacing="1" cellpadding="3" border="0" bgcolor="#1E679A">
+            <tr>
+                <td bgcolor="#ffffcc" align="center">
+
+                    <form action="script.php">
+                        <h2>Datos para el registro</h2>
+                        <p>
+                            <label for="username_reg" class="uname_reg"> Nombre: </label>
+                            <input id="username_reg" name="username_reg" required type="text"
+                                placeholder="Escribir nombre" />
+                        </p>
+                        <p>
+                            <label for="userapell_reg" class="uapell_reg"> Apellido: </label>
+                            <input id="userapell_reg" name="userapell_reg" required type="text"
+                                placeholder="Escribir apellido" />
+                        </p>
+                        <p>
+                            <label for="email_reg" class="uemail_reg"> E-mail</label>
+                            <input id="email_reg" name="email_reg" required type="email"
+                                placeholder="usuario@mail.com" />
+                        </p>
+                        <p>
+                            <label for="password_reg" class="upasswd_reg">Contraseña</label>
+                            <input id="password_reg" name="password_reg" required type="password"
+                                placeholder="eg. X8df!90EO" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                title="Debe contener al menos un número y una letra minúscula y mayúscula, y al menos 8 o más caracteres" />
+                        </p>
+                        <p>
+                            <label for="password_confirm" class="upasswd_reg">Confirmar contraseña </label>
+                            <input id="password_confirm" name="password_confirm" required type="password"
+                                placeholder="eg. X8df!90EO" />
+                        </p>
+                        <p class="signin_button">
+                            <input type="submit" value="Finalizar" />
+                        </p>
+                        <p></p>
+                        Registrate con  
+                        <a href="https://www.facebook.com/"><img src="facebook.png" width="20" height="20"/></a>
+                        <a href="https://www.google.com/"><img src="google.png" width="20" height="20"/></a>
+                        <p></p>
+
+                    </form>
+
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+
+</html>
