@@ -35,6 +35,41 @@ foreach ($lista as $row) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="../Pie.css">
     <title>VAINCE</title>
+    <style>
+        .horizontal-scroll-contenedor {
+
+            overflow-y: hidden;
+            overflow-x: auto;
+            text-align: left;
+            white-space: nowrap;
+            width: auto;
+            height: auto;
+            margin: 0 auto;
+
+        }
+
+        .horizontal-scroll-contenedor>div {
+            width: auto;
+            height: auto;
+            display: inline-block;
+            margin: 10px 10px 10px 10px;
+            background-color: #252323;
+            border-style: solid;
+            color: white;
+        }
+
+        p {
+            margin-left: 15px;
+            margin-right: 15px;
+            
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -105,86 +140,46 @@ foreach ($lista as $row) {
         </div>
     </div>
 
-
-    <div class="card border-secondary mb-3">
+    <!-- CONTENIDO -->
+    <div>
         <div class="card-header">
             <h3>OBJETOS RELACIONADOS</h3>
         </div>
-        <div class="card-body">
-            <div class="form withscroll">
-                <table width="300" cellspacing="1" cellspacing="2" cellpadding="3">
-                    <tr>
-                        <td>
+        <br>
+        <div class="horizontal-scroll-contenedor">
+            <?php
+            foreach ($todos as $row) {
+                $nomb = $row[1];
+                $niv = $row[5];
+                $prec = $row[2];
+                $im = $row[17];
+                $categ = $row[12];
+                if ($categ == $cate) {
+            ?>
+                    <div>
+                        <img src="./Imagenes/<?php echo $im; ?>" title="Click para ver descripción" onclick="caracterizar(<?php echo $row[0]; ?>)" style="width: 200px; height:170px;">
+                        <p class="img-footer">
+                        </p>
+                        <p class="img-footer">
+                            Nombre:</b> <?php echo $nomb; ?>
+                        </p>
+                        <p class="img-footer">
+                            Nivel:</b> <?php echo $niv; ?>
+                        </p>
+                        <p class="img-footer">
+                            Precio:</b> <?php echo $prec; ?>
+                        </p>
 
-                            <?php
-                            foreach ($todos as $row) {
-                                $nomb = $row[1];
-                                $niv = $row[5];
-                                $prec = $row[2];
-                                $im = $row[17];
-                                $categ = $row[12];
-                                if ($categ == $cate) {
-                            ?>
-                                    <div class="container">
-                                        <div class="card text-white bg-dark border-dark mb-3" style="width: 16rem;">
-                                            <div class="card-header">
-                                                <img src="./Imagenes/<?php echo $im; ?>" class="card-img-top" alt="Card image cap" title="Click para ver descripción" onclick="caracterizar(<?php echo $row[0]; ?>)" width="55px" height="205px">
-                                            </div>
-                                            <div class="card-body bg-dark">
-                                                <p class="card-text"><b>Nombre:</b> <?php echo $nomb; ?></p>
-                                                <p class="card-text"><b>Nivel:</b> <?php echo $niv; ?></p>
-                                                <p class="card-text"><b>Precio:</b> <?php echo $prec; ?></p>
+                    </div>
 
-                                            </div>
-                                        </div>
-                                    </div>
-
-                            <?php
-                                }
-                            }
-                            ?>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+            <?php
+                }
+            }
+            ?>
         </div>
 
     </div>
 
-
-
-
-
-
-
-    <!-- CONTENIDO -->
-    <div>
-        <p align="center">OBJETOS RELACIONADOS...</p>
-        <?php
-        foreach ($todos as $row) {
-            $nomb = $row[1];
-            $niv = $row[5];
-            $prec = $row[2];
-            $im = $row[17];
-            $categ = $row[12];
-            if ($categ == $cate) {
-        ?>
-                <div class="card text-white bg-dark border-dark mb-3" style="width: 16rem;">
-                    <div class="card-header">
-                        <img src="./Imagenes/<?php echo $im; ?>" class="card-img-top" alt="Card image cap" title="Click para ver descripción" onclick="caracterizar(<?php echo $row[0]; ?>)" width="55px" height="205px">
-                    </div>
-                    <div class="card-body bg-dark">
-                        <p class="card-text"><b>Nombre:</b> <?php echo $nomb; ?></p>
-                        <p class="card-text"><b>Nivel:</b> <?php echo $niv; ?></p>
-                        <p class="card-text"><b>Precio:</b> <?php echo $prec; ?></p>
-
-                    </div>
-                </div>
-        <?php
-            }
-        }
-        ?>
-    </div>
     <script>
         function caracterizar(co) {
             location.href = "DescripcionObjeto.php?cod=" + co;
