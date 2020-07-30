@@ -16,7 +16,8 @@ if (sizeof($listado) < 6 && (sizeof($listado)+$cantidad)<=6) {
         $listado[] = $objeto;
         $_SESSION['listado'] = $listado;
     }
-    echo "agregado con exito";
+    echo '<script language="javascript">alert("Agregado con exito");</script>';
+    //echo "agregado con exito";
 } else {
     echo "no hay espacio ";
     echo "solo queda ";

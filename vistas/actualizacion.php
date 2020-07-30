@@ -29,5 +29,5 @@ if ($_POST['username_reg'] != "" && $_POST['userapell_reg'] != "") {
     $ninguno = "Nada para actualizar";
 }
 
-header('Location: nuevo.php?nueva=3');
-//include_once 'home.php';
+//header('Location: nuevo.php?nueva=3');
+include_once 'home.php';

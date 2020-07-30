@@ -29,7 +29,7 @@ $lista = $_SESSION['lista'];
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand">VAINCE</a>
+        <a class="navbar-brand"><div style = "font-family:monaco;font-size:larger">VAINCE</div></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,24 +37,24 @@ $lista = $_SESSION['lista'];
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/indexLogin.php?op=0&niv=0">Objetos</a>
+                    <a class="nav-link" href="http://localhost/vaince/indexLogin.php?op=0&niv=0"><div style="color:white;">Objetos</div></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=1">Noticias</a>
+                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=1"><div style="color:white;">Noticias</div></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=0">Comunidad</a>
+                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=0"><div style="color:white;">Comunidad</div></a>
                 </li>
             </ul>
             <div class="form-inline my-2 my-lg-0">
                 <button class="btn btn-outline-secondary my-2 my-sm-0 justify-content-center" onclick="location='vistas/nuevo.php?nueva=3'">
                     <img src="../vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
-                    <?php echo $user->getName(); ?>
+                    <div style="color:white;"><?php echo $user->getName(); ?></div>
                 </button>
                 &nbsp
                 <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='vistas/nuevo.php?nueva=5'">
                     <img src="../vaince/Iconos/shopping-cart.png" style="max-width: 20px; max-height: 20px;">
-                    Carrito
+                    <div style="color:white;">Carrito</div>
                 </button>
 
             </div>
@@ -87,7 +87,7 @@ $lista = $_SESSION['lista'];
             &nbsp &nbsp
             <input type="button" value="Filtrar" class="btn btn-dark" onclick="filtrar()" />
 
-            <input type="button" value="Solicitar Catalogo" id="catalogo" class="btn btn-dark" style="margin-left: auto;" onclick="location.href='./carritoPersonal.php'" title="Botón solo disponible para usuarios registrados" disabled />
+            <input type="button" value="Solicitar Catalogo" id="catalogo" class="btn btn-dark" style="margin-left: auto;" onclick="location.href=''"/>
 
         </div>
 

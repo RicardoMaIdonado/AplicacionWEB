@@ -75,37 +75,43 @@ foreach ($lista as $row) {
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand">VAINCE</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand">
+            <div style="font-family:monaco;font-size:larger">VAINCE</div>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/indexLogin.php?op=0&niv=0">Objetos</a>
+                    <a class="nav-link" href="http://localhost/vaince/indexLogin.php?op=0&niv=0">
+                        <div style="color:white;">Objetos</div>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=1">Noticias</a>
+                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=1">
+                        <div style="color:white;">Noticias</div>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=0">Comunidad</a>
+                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=0">
+                        <div style="color:white;">Comunidad</div>
+                    </a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-secondary my-2 my-sm-0 justify-content-center" type="submit">
+            <div class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-secondary my-2 my-sm-0 justify-content-center" onclick="location='nuevo.php?nueva=3'">
                     <img src="user.png" style="max-width: 20px; max-height: 20px;">
-                    <?php echo $user->getName(); ?>
+                    <div style="color:white;"><?php echo $user->getName(); ?></div>
                 </button>
                 &nbsp
-                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" onclick="location='carritoPersonal.php'">
+                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='nuevo.php?nueva=5'">
                     <img src="shopping-cart.png" style="max-width: 20px; max-height: 20px;">
-                    Carrito
+                    <div style="color:white;">Carrito</div>
                 </button>
 
-
-            </form>
+            </div>
         </div>
     </nav>
     <!-- NAVBAR -->
@@ -153,8 +159,18 @@ foreach ($lista as $row) {
                     <p><b>Recarga de energía:</b> +<?php echo $energia_recarga; ?></p>
                     <p><b>Energía máxima:</b> +<?php echo $energia_maxima; ?> %</p>
                     <p></p>
+
                 </div>
+
             </div>
+            <p></p>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-outline-secondary" onclick="enviar(<?php echo $row[0]; ?>)">
+                    <img src="../Iconos/smart-cart.png" style="max-width: 20px; max-height: 20px;">
+                    <div style="color:black;">Agregar al Carrito</div>
+                </button>
+            </div>
+            <p></p>
         </div>
     </div>
 
@@ -203,6 +219,14 @@ foreach ($lista as $row) {
             location.href = "nuevo.php?cod=" + co + "&nueva=2";
         }
     </script>
+
+    <script>
+        function enviar(c) {
+
+            location.href = "nuevo.php?cod=" + c + "&nueva=4";
+        }
+    </script>
+
     <!-- Footer -->
     <footer>
         <div class="colum1">

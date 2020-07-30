@@ -28,6 +28,11 @@ if (isset($_SESSION['user'])) {
         include_once '../vistas/carritoPersonal.php';
     }else if ($_REQUEST['nueva']==6) {
         include_once 'agregado.php';
+    }else if ($_REQUEST['nueva']==7) {
+        unset($_SESSION['listado']);
+        $_SESSION['listado'] = array();
+        echo '<script language="javascript">alert("Carrito vacio");</script>';
+        include_once 'carritoPersonal.php';
     }
     
 }

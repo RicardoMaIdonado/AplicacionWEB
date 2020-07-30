@@ -21,7 +21,7 @@
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand">VAINCE</a>
+        <a class="navbar-brand"><div style = "font-family:monaco;font-size:larger">VAINCE</div></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,26 +29,27 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/indexLogin.php?op=0&niv=0">Objetos</a>
+                    <a class="nav-link" href="http://localhost/vaince/indexLogin.php?op=0&niv=0"><div style="color:white;">Objetos</div></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=1">Noticias</a>
+                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=1"><div style="color:white;">Noticias</div></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=0">Comunidad</a>
+                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=0"><div style="color:white;">Comunidad</div></a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-secondary my-2 my-sm-0 justify-content-center" type="submit">
-                    <img src="user.png" style="max-width: 20px; max-height: 20px;">
-                    <?php echo $user->getName(); ?>
+            <div class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-secondary my-2 my-sm-0 justify-content-center" onclick="location='nuevo.php?nueva=3'">
+                    <img src="user.png" style="max-width: 20px; max-height: 20px; margin-right: 0;">
+                    <div style="color:white;"><?php echo $user->getName(); ?></div>
                 </button>
                 &nbsp
-                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" onclick="location='vistas/nuevo.php?nueva=5'">
-                    <img src="shopping-cart.png" style="max-width: 20px; max-height: 20px;">
-                    Carrito
+                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='nuevo.php?nueva=5'">
+                    <img src="shopping-cart.png" style="max-width: 20px; max-height: 20px; margin-right: 0;">
+                    <div style="color:white;">Carrito</div>
                 </button>
-            </form>
+
+            </div>
         </div>
     </nav>
     <!-- NAVBAR -->
@@ -65,7 +66,7 @@
             </div>
             <div class="card-body">
                 <p style="text-align: justify;">
-                    <img src="./Imagenes/vce.jpg" class="img-fluid" alt="Vainglory Community Edition" align="left">
+                    <img src="../Imagenes/vce.jpg" class="img-fluid" alt="Vainglory Community Edition" align="left">
                     Rogue recientemente hizo un llamado para cerrar los servidores de Vainglory. En los últimos días
                     los desarrolladores del juego han estado luchando para tener una mejor solución para el juego y
                     la base de jugadores
@@ -100,7 +101,7 @@
             </div>
             <div class="card-body">
                 <p style="text-align: justify;">
-                    <img src="./Imagenes/artece.png" class="img-fluid" alt="Vainglory Community Edition" align="left">
+                    <img src="../Imagenes/artece.png" class="img-fluid" alt="Vainglory Community Edition" align="left">
                     El equipo de SEMC siempre ha estado asombrado por los increíbles artistas fanáticos que han
                     puesto energía en la
                     creación de obras de arte en Vainglory. En el pasado, se han realizado una serie de eventos de
