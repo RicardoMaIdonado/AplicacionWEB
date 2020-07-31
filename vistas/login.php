@@ -91,11 +91,11 @@
 
 
     <!-- Footer -->
-    <footer>
+    <footer class="page-footer font-small mdb-color darken-3 pt-4">
         <div class="colum1">
-            <p>VainCE fue creado con el proposito de dar a concer el juego multiplataforma llamado vainglory
+            <p>VainCE fue creado con el próposito de dar a conocer el juego multiplataforma llamado Vainglory
                 Comunity
-                edition aqui puedes encontrar todo sobre tus objetos favoritos.</p>
+                Edition. Aquí puedes encontrar todo sobre tus objetos y construcciones favoritas.</p>
             <p>Copyright © 2020 VainCE | Todos los derechos reservados</p>
         </div>
         <div class="colum2">

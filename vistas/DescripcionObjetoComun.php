@@ -204,25 +204,25 @@ foreach ($lista as $row) {
         }
     </script>
     <!-- Footer -->
-    <footer>
+    <footer class="page-footer font-small mdb-color darken-3 pt-4">
         <div class="colum1">
-            <p>VainCE fue creado con el proposito de dar a concer el juego multiplataforma llamado vainglory
+            <p>VainCE fue creado con el próposito de dar a conocer el juego multiplataforma llamado Vainglory
                 Comunity
-                edition aqui puedes encontrar todo sobre tus objetos favoritos.</p>
+                Edition. Aquí puedes encontrar todo sobre tus objetos y construcciones favoritas.</p>
             <p>Copyright © 2020 VainCE | Todos los derechos reservados</p>
         </div>
         <div class="colum2">
             <div class="information">
                 <a href="https://www.facebook.com/vainglorygame">
-                    <img src="../Iconos/facebook.png" alt=""></a>
+                    <img src="facebook.png" alt=""></a>
             </div>
             <div class="information">
                 <a href="https://twitter.com/vainglory?lang=es">
-                    <img src="../Iconos/twitter.png" alt=""></a>
+                    <img src="twitter.png" alt=""></a>
             </div>
             <div class="information">
                 <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ">
-                    <img src="../Iconos/youtube.png" alt=""></a>
+                    <img src="youtube.png" alt=""></a>
             </div>
         </div>
     </footer>

@@ -83,5 +83,18 @@ class Producto extends DB
    
         return $lista;
     }
+    public function obtenerObjeto($nombre) {
+        $cnx=new DB();
+        $cn=$cnx->getConexion();
+        $lista = array();
+        $res=$cn->prepare("select * from objeto where nombre='$nombre'");
+        $res->execute();
+
+        foreach($res as $row) {
+            $lista[]=$row;
+        }
+   
+        return $lista;
+    }
     
 }

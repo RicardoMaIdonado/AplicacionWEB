@@ -17,6 +17,52 @@ $listado = $_SESSION['listado'];
             width: 550px;
             height: 300px;
         }
+
+        table {
+            font-family: "Helvetica Neue", Helvetica, sans-serif
+        }
+
+        caption {
+            text-align: left;
+            color: silver;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 5px;
+        }
+
+        thead {
+            background: black;
+            color: white;
+        }
+
+        th,
+        td {
+            padding: 5px 10px;
+        }
+
+        tbody tr:nth-child(even) {
+            background: WhiteSmoke;
+        }
+
+        tbody tr td:nth-child(2) {
+            text-align: center;
+        }
+
+        tbody tr td:nth-child(3),
+        tbody tr td:nth-child(4) {
+            text-align: right;
+            font-family: monospace;
+        }
+
+        tfoot {
+            background: SeaGreen;
+            color: white;
+            text-align: right;
+        }
+
+        tfoot tr th:last-child {
+            font-family: monospace;
+        }
     </style>
 </head>
 
@@ -69,31 +115,294 @@ $listado = $_SESSION['listado'];
     <div class="d-flex justify-content-center">
         <h1>Carrito Personal</h1>
         <br>
+
     </div>
     <div class="d-flex justify-content-center">
         <?php
-        foreach ($listado as $row) {
+        foreach ($listado as $rowi) {
+            echo $rowi;
             echo "<br>";
-            echo $row;
         }
         ?>
-        <br>
+
     </div>
     <p></p>
     <div class="d-flex justify-content-center">
+        <?php
+        include '../Modelo/Objeto.php';
+
+        $producto = new Producto();
+
+
+        $conjunto = array();
+
+        $repetidas = array_unique($listado);
+
+        $cantidades = array();
+        $precios = array();
+        sort($listado);
+
+        foreach ($listado as $row) {
+
+            $aray = array();
+            $objeto = new Objeto();
+            $aray = $producto->obtenerObjeto($row);
+            foreach ($aray as $rows) {
+                $objeto->id_objeto = $rows[0];
+                $objeto->nombre = $rows[1];
+                $objeto->precio = $rows[2];
+                $objeto->dano_arma = $rows[3];
+                $objeto->dano_cristal = $rows[4];
+                $objeto->nivel = $rows[5];
+                $objeto->escudo = $rows[6];
+                $objeto->salud = $rows[7];
+                $objeto->velocidad_ataque = $rows[8];
+                $objeto->dano_critico = $rows[9];
+                $objeto->prob_critico = $rows[10];
+                $objeto->vampirismo = $rows[11];
+                $objeto->categoria_objeto = $rows[12];
+                $objeto->perforacion_armadura = $rows[13];
+                $objeto->reduccion_reposo = $rows[14];
+                $objeto->energia_recarga = $rows[15];
+                $objeto->energia_maxima = $rows[16];
+                $objeto->imagen = $rows[17];
+                $objeto->armadura = $rows[18];
+                $objeto->perforacion_escudo = $rows[19];
+            }
+
+            $conjunto[] = $objeto;
+        }
+
+        foreach ($repetidas as $para) {
+            $cant = 0;
+            $pre = 0;
+            $porque = new Objeto();
+            foreach ($conjunto as $porque) {
+                if ($para == $porque->nombre) {
+                    $cant = $cant + 1;
+                    $pre = $pre + $porque->precio;
+                }
+            }
+
+            $cantidades[] = $cant;
+            $precios[] = $pre;
+        }
+
+        $totalprecio = 0;
+        $totalarma = 0;
+        $totalcristal = 0;
+        $totalescudo = 0;
+        $totalsalud = 0;
+        $totalvelataque = 0;
+        $totaldcri = 0;
+        $totalpcri = 0;
+        $totalvamp = 0;
+        $totalperarm = 0;
+        $totalredrep = 0;
+        $totalenerrec = 0;
+        $totalenermax = 0;
+        $totalarm = 0;
+        $totalperesc = 0;
+        $raw = new Objeto();
+        foreach ($conjunto as $raw) {
+            //echo $raw->id_objeto;
+            //echo "<br>";
+            $totalprecio = $totalprecio + $raw->precio;
+            $totalarma = $totalarma + $raw->dano_arma;
+            $totalcristal = $totalcristal + $raw->dano_cristal;
+            $totalescudo = $totalescudo + $raw->escudo;
+            $totalsalud = $totalsalud + $raw->salud;
+            $totalvelataque = $totalvelataque + $raw->velocidad_ataque;
+            $totaldcri = $totaldcri + $raw->dano_critico;
+            $totalpcri = $totalpcri + $raw->prob_critico;
+            $totalvamp = $totalvamp + $raw->vampirismo;
+            $totalperarm = $totalperarm + $raw->perforacion_armadura;
+            $totalredrep = $totalredrep + $raw->reduccion_reposo;
+            $totalenerrec = $totalenerrec + $raw->energia_recarga;
+            $totalenermax = $totalenermax + $raw->energia_maxima;
+            $totalarm = $totalarm + $raw->armadura;
+            $totalperesc = $totalperesc + $raw->perforacion_escudo;
+        }
+        ?>
+    </div>
+    <div class="d-flex justify-content-center">
+        <h2>Detalle del pedido</h2>
+    </div>
+    <div class="d-flex justify-content-center">
+
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>OBJETO</th>
+                    <th>PRECIO</th>
+                    <th>CANTIDAD</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <?php
+                $contado = 0;
+                foreach ($repetidas as $rowen) {
+                ?>
+                    <tr>
+                        <td><?php echo $rowen ?></td>
+                        <td><?php
+                            foreach ($conjunto as $otra) {
+                                if ($otra->nombre == $rowen) {
+                                    echo $otra->precio;
+
+                                    break;
+                                }
+                            }
+                            ?></td>
+                        <td> <?php echo $cantidades[$contado] ?> </td>
+                        <td> <?php echo $precios[$contado] ?> </td>
+                    </tr>
+
+                <?php
+                    $contado = $contado + 1;
+                }
+                ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="3">Total</th>
+                    <th><?php echo $totalprecio ?></th>
+                </tr>
+            </tfoot>
+        </table>
+
+
+
+    </div>
+    <br>
+    <h2 align="center">ESTADISTICAS DE LA CONSTRUCCION</h2>
+
+    <div align="center">
+        <?php
+        if ($totalarma != 0) {
+        ?>
+            <p><b>Daño de cristal:</b> +<?php echo $totalarma; ?> de potencia</p>
+        <?php
+        }
+        ?>
+        <?php
+        if ($totalcristal != 0) {
+        ?>
+            <p><b>Daño de arma:</b> +<?php echo $totalcristal; ?> de potencia</p>
+        <?php
+        }
+        ?>
+        <?php
+        if ($totalescudo != 0) {
+        ?>
+            <p><b>Escudo:</b> +<?php echo $totalescudo; ?></p>
+        <?php
+        }
+        ?>
+        <?php
+        if ($totalsalud != 0) {
+        ?>
+            <p><b>Salud:</b> +<?php echo $totalsalud; ?> %</p>
+        <?php
+        }
+        ?>
+        <?php
+        if ($totalarm != 0) {
+        ?>
+            <p><b>Armadura:</b> +<?php echo $totalarm; ?></p>
+        <?php
+        }
+        ?>
+        <?php
+        if ($totalvelataque != 0) {
+        ?>
+            <p><b>Velocidad de ataque:</b> +<?php echo $totalvelataque; ?> %</p>
+        <?php
+        }
+        ?>
+        <?php
+        if ($totaldcri != 0) {
+        ?>
+            <p><b>Daño crítico:</b> +<?php echo $totaldcri; ?> %</p>
+        <?php
+        }
+        ?>
+        <?php
+        if ($totalpcri != 0) {
+        ?>
+            <p><b>Probabilidad de crítico:</b> +<?php echo $totalpcri; ?> %</p>
+        <?php
+        }
+        ?>
+        <?php
+        if ($totalvamp != 0) {
+        ?>
+            <p><b>Vampirismo:</b> +<?php echo $totalvamp; ?> %</p>
+        <?php
+        }
+        ?>
+        <?php
+        if ($totalperarm != 0) {
+        ?>
+            <p><b>Perforación de armadura:</b> +<?php echo $totalperarm; ?> %</p>
+        <?php
+        }
+        ?>
+        <?php
+        if ($totalredrep != 0) {
+        ?>
+            <p><b>Reducción de reposo:</b> +<?php echo $totalredrep; ?> %</p>
+        <?php
+        }
+        ?>
+        <?php
+        if ($totalenerrec != 0) {
+        ?>
+            <p><b>Recarga de energía:</b> +<?php echo $totalenerrec; ?></p>
+        <?php
+        }
+        ?>
+        <?php
+        if ($totalenermax != 0) {
+        ?>
+            <p><b>Energía máxima:</b> +<?php echo $totalenermax; ?> %</p>
+        <?php
+        }
+        ?>
+        <?php
+        if ($totalperesc != 0) {
+        ?>
+            <p><b>Perforacion de escudo:</b> +<?php echo $totalperesc; ?> %</p>
+        <?php
+        }
+        ?>
+        <br>
+        <p></p>
+        <h2>COSTO TOTAL: <?php echo $totalprecio ?> de oro</h2>
+    </div>
+
+    <div class="d-flex justify-content-around">
         <button class="btn btn-outline-secondary" onclick="location='nuevo.php?nueva=7'">
             <img src="../Iconos/recycle.png" style="max-width: 20px; max-height: 20px;">
             <div style="color:black;">Vaciar Carrito</div>
         </button>
+        <button class="btn btn-outline-secondary" onclick="location='#'">
+            <img src="../Iconos/buy.png" style="max-width: 20px; max-height: 20px;">
+            <div style="color:black;">Solicitar</div>
+        </button>
     </div>
-    
+
 
     <!-- Footer -->
-    <footer>
+    <footer class="page-footer font-small mdb-color darken-3 pt-4">
         <div class="colum1">
-            <p>VainCE fue creado con el proposito de dar a concer el juego multiplataforma llamado vainglory
+            <p>VainCE fue creado con el próposito de dar a conocer el juego multiplataforma llamado Vainglory
                 Comunity
-                edition aqui puedes encontrar todo sobre tus objetos favoritos.</p>
+                Edition. Aquí puedes encontrar todo sobre tus objetos y construcciones favoritas.</p>
             <p>Copyright © 2020 VainCE | Todos los derechos reservados</p>
         </div>
         <div class="colum2">

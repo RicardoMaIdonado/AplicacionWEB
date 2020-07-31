@@ -29,7 +29,9 @@ $lista = $_SESSION['lista'];
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand"><div style = "font-family:monaco;font-size:larger">VAINCE</div></a>
+        <a class="navbar-brand">
+            <div style="font-family:monaco;font-size:larger">VAINCE</div>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,13 +39,19 @@ $lista = $_SESSION['lista'];
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/indexLogin.php?op=0&niv=0"><div style="color:white;">Objetos</div></a>
+                    <a class="nav-link" href="http://localhost/vaince/indexLogin.php?op=0&niv=0">
+                        <div style="color:white;">Objetos</div>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=1"><div style="color:white;">Noticias</div></a>
+                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=1">
+                        <div style="color:white;">Noticias</div>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=0"><div style="color:white;">Comunidad</div></a>
+                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=0">
+                        <div style="color:white;">Comunidad</div>
+                    </a>
                 </li>
             </ul>
             <div class="form-inline my-2 my-lg-0">
@@ -86,8 +94,13 @@ $lista = $_SESSION['lista'];
             </select>
             &nbsp &nbsp
             <input type="button" value="Filtrar" class="btn btn-dark" onclick="filtrar()" />
+            <p></p>
 
-            <input type="button" value="Solicitar Catalogo" id="catalogo" class="btn btn-dark" style="margin-left: auto;" onclick="location.href=''"/>
+
+            <button class="btn btn-outline-secondary" style="margin-left: auto;" onclick="location=''">
+                <img src="../vaince/Iconos/pdf.png" style="max-width: 20px; max-height: 20px;">
+                Solicitar Catalogo
+            </button>
 
         </div>
 
@@ -171,7 +184,7 @@ $lista = $_SESSION['lista'];
     <script>
         function enviar(c) {
 
-            location.href = "vistas/nuevo.php?cod=" + c +"&nueva=4";
+            location.href = "vistas/nuevo.php?cod=" + c + "&nueva=4";
         }
     </script>
 
@@ -191,11 +204,11 @@ $lista = $_SESSION['lista'];
     </script>
 
     <!-- Footer -->
-    <footer>
+    <footer class="page-footer font-small mdb-color darken-3 pt-4">
         <div class="colum1">
-            <p>VainCE fue creado con el proposito de dar a concer el juego multiplataforma llamado vainglory
+            <p>VainCE fue creado con el próposito de dar a conocer el juego multiplataforma llamado Vainglory
                 Comunity
-                edition aqui puedes encontrar todo sobre tus objetos favoritos.</p>
+                Edition. Aquí puedes encontrar todo sobre tus objetos y construcciones favoritas.</p>
             <p>Copyright © 2020 VainCE | Todos los derechos reservados</p>
         </div>
         <div class="colum2">

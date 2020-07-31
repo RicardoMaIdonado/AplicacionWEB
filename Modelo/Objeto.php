@@ -20,5 +20,5 @@ class Objeto {
     public $energia_maxima;
     public $imagen;
     public $armadura;
-
+    public $perforacion_escudo;
 }

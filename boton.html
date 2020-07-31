@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        .boton {
+            background-color: #456789;
+            color: white;
+            width: 185px;
+        }
+
+        .links a{
+            text-decoration: none;
+            color: black;
+            display: block;
+            padding: 13px;
+        }
+        .links{
+            background-color: #f9f9f9;
+            width: 185px;
+            display: none;
+        }
+        .links a:hover{
+            background-color:blue;
+        }
+        .desplegable:hover .links{
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="desplegable">
+        <button class="boton">Boton desplegable</button>
+        <div class="links">
+            <a href="#">hola1</a>
+            <a href="#">hola2</a>
+            <a href="#">hola3</a>
+        </div>
+    </div>
+</body>
+
+</html>
