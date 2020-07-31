@@ -132,14 +132,14 @@ $listado = $_SESSION['listado'];
         include '../Modelo/Objeto.php';
 
         $producto = new Producto();
-
-
         $conjunto = array();
 
-        $repetidas = array_unique($listado);
 
+        $repetidas = array_unique($listado);
         $cantidades = array();
         $precios = array();
+
+
         sort($listado);
 
         foreach ($listado as $row) {
@@ -215,13 +215,23 @@ $listado = $_SESSION['listado'];
             $totalvelataque = $totalvelataque + $raw->velocidad_ataque;
             $totaldcri = $totaldcri + $raw->dano_critico;
             $totalpcri = $totalpcri + $raw->prob_critico;
-            $totalvamp = $totalvamp + $raw->vampirismo;
-            $totalperarm = $totalperarm + $raw->perforacion_armadura;
+
+            if ($raw->vampirismo > $totalvamp) {
+                $totalvamp = $raw->vampirismo;
+            }
+
+            if ($raw->perforacion_armadura > $totalperarm) {
+                $totalperarm = $raw->perforacion_armadura;
+            }
+
             $totalredrep = $totalredrep + $raw->reduccion_reposo;
             $totalenerrec = $totalenerrec + $raw->energia_recarga;
             $totalenermax = $totalenermax + $raw->energia_maxima;
             $totalarm = $totalarm + $raw->armadura;
-            $totalperesc = $totalperesc + $raw->perforacion_escudo;
+
+            if ($raw->perforacion_escudo > $totalperesc) {
+                $totalperesc = $raw->perforacion_escudo;
+            }
         }
         ?>
     </div>
@@ -279,7 +289,7 @@ $listado = $_SESSION['listado'];
 
     </div>
     <br>
-    <h2 align="center">ESTADISTICAS DE LA CONSTRUCCION</h2>
+    <h2 align="center">ESTADÍSTICAS DE LA CONSTRUCCIÓN</h2>
 
     <div align="center">
         <?php
@@ -376,26 +386,26 @@ $listado = $_SESSION['listado'];
         <?php
         if ($totalperesc != 0) {
         ?>
-            <p><b>Perforacion de escudo:</b> +<?php echo $totalperesc; ?> %</p>
+            <p><b>Perforación de escudo:</b> +<?php echo $totalperesc; ?> %</p>
         <?php
         }
         ?>
         <br>
         <p></p>
-        <h2>COSTO TOTAL: <?php echo $totalprecio ?> de oro</h2>
-    </div>
 
+        <h2> <img src="../Iconos/money.png" style="max-width: 50px; max-height: 50px;" alt="" title="Valoración de moneda virtual: Oro"> COSTO TOTAL DEL PEDIDO: <?php echo $totalprecio ?> de oro</h2>
+    </div>
+    <br>
     <div class="d-flex justify-content-around">
         <button class="btn btn-outline-secondary" onclick="location='nuevo.php?nueva=7'">
             <img src="../Iconos/recycle.png" style="max-width: 20px; max-height: 20px;">
             <div style="color:black;">Vaciar Carrito</div>
         </button>
-        <button class="btn btn-outline-secondary" onclick="location='#'">
+        <button class="btn btn-outline-secondary">
             <img src="../Iconos/buy.png" style="max-width: 20px; max-height: 20px;">
             <div style="color:black;">Solicitar</div>
         </button>
     </div>
-
 
     <!-- Footer -->
     <footer class="page-footer font-small mdb-color darken-3 pt-4">
@@ -407,15 +417,15 @@ $listado = $_SESSION['listado'];
         </div>
         <div class="colum2">
             <div class="information">
-                <a href="https://www.facebook.com/vainglorygame">
+                <a href="https://www.facebook.com/vainglorygame" target="_blank">
                     <img src="facebook.png" alt=""></a>
             </div>
             <div class="information">
-                <a href="https://twitter.com/vainglory?lang=es">
+                <a href="https://twitter.com/vainglory?lang=es" target="_blank">
                     <img src="twitter.png" alt=""></a>
             </div>
             <div class="information">
-                <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ">
+                <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ" target="_blank">
                     <img src="youtube.png" alt=""></a>
             </div>
         </div>

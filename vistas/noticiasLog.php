@@ -77,7 +77,7 @@
                     juego desde sus inicios.
                     Se incluye un resumen para respaldar los planes y expectativas descritos en el anuncio, los
                     mismos que se pueden encontrar
-                    detallados en el siguiente <a href="https://youtu.be/g-jIIZodPP0" class="text-light font-italic">enlace</a>. El
+                    detallados en el siguiente <a href="https://youtu.be/g-jIIZodPP0" target="_blank" class="text-light font-italic">enlace</a>. El
                     objetivo es darle una idea de hacia dónde
                     se esta dirigiendo el futuro de Vainglory en los próximos días y semanas, esto a través de
                     etapas que dan inicio por la
@@ -88,7 +88,7 @@
                 </p>
             </div>
             <div class="card-footer">
-                <p><a href="http://www.vainglorygame.com/news/vainglory-community-edition" class="text-light">LEER
+                <p><a href="http://www.vainglorygame.com/news/vainglory-community-edition" target="_blank" class="text-light">LEER
                         MAS...</a></p>
             </div>
         </div>
@@ -122,7 +122,7 @@
                 </p>
             </div>
             <div class="card-footer">
-                <p><a href="http://www.vainglorygame.com/news/vainglory-ce-art-event" class="text-light">LEER
+                <p><a href="http://www.vainglorygame.com/news/vainglory-ce-art-event" target="_blank" class="text-light">LEER
                         MAS...</a></p>
             </div>
         </div>
@@ -139,15 +139,15 @@
         </div>
         <div class="colum2">
             <div class="information">
-                <a href="https://www.facebook.com/vainglorygame">
+                <a href="https://www.facebook.com/vainglorygame" target="_blank">
                     <img src="facebook.png" alt=""></a>
             </div>
             <div class="information">
-                <a href="https://twitter.com/vainglory?lang=es">
+                <a href="https://twitter.com/vainglory?lang=es" target="_blank">
                     <img src="twitter.png" alt=""></a>
             </div>
             <div class="information">
-                <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ">
+                <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ" target="_blank">
                     <img src="youtube.png" alt=""></a>
             </div>
         </div>

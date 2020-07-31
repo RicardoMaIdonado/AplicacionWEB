@@ -11,9 +11,10 @@ $bol = isset($_SESSION['user']);
 if (isset($_SESSION['user'])) {
     //echo "Hay sesion";
     $user->setUser($userSession->getCurrentUser());
-
-    $_SESSION['op'] = $_REQUEST['op'];
-    $_SESSION['niv'] = $_REQUEST['niv'];
+    if (isset($_REQUEST['op']) && isset($_REQUEST['niv'])) {
+        $_SESSION['op'] = $_REQUEST['op'];
+        $_SESSION['niv'] = $_REQUEST['niv'];
+    }
     include_once 'controlador/IndexLog.php';
 } else if (isset($_POST['mail']) && isset($_POST['password'])) {
     //echo "validacion de login";

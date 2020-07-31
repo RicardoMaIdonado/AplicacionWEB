@@ -13,21 +13,21 @@ if ($_POST['username_reg'] != "" && $_POST['userapell_reg'] != "") {
 
     $user->updateName($user->getUser(), $username);
     $user->updateApellido($user->getUser(), $userapell);
-    $success = "Datos actualizados con exito";
+    $mensaje = 1;
 } else if ($_POST['username_reg'] != "" && $_POST['userapell_reg'] == "") {
     $username = $_POST['username_reg'];
 
     $user->updateName($user->getUser(), $username);
 
-    $success = "Datos actualizados con exito";
+    $mensaje = 2;
 } else if ($_POST['username_reg'] == "" && $_POST['userapell_reg'] != "") {
     $userapell = $_POST['userapell_reg'];
 
     $user->updateApellido($user->getUser(), $userapell);
-    $success = "Datos actualizados con exito";
+    $mensaje = 3;
 } else {
-    $ninguno = "Nada para actualizar";
+    $mensaje = 0;
 }
 
-//header('Location: nuevo.php?nueva=3');
-include_once 'home.php';
+header("Location: nuevo.php?nueva=8&mensaje=".$mensaje);
+//include_once 'home.php';

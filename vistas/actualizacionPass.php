@@ -13,12 +13,12 @@ if ($_POST['password'] != "" && $_POST['password_confirm'] != "") {
     if ($passForm == $passConfirmForm) {
 
         $user->updatePass($user->getUser(), $passForm);
-        $successP = "Contraseña actualizada con exito";
+        $mensaje = 4;
     } else {
 
-        $errorPass = "Las contraseñas no coinciden";
+        $mensaje = 5;
     }
 }
 
-//header('Location: nuevo.php?nueva=3');
+header("Location: nuevo.php?nueva=8&mensaje=".$mensaje);
 include_once 'home.php';

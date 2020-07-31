@@ -71,7 +71,7 @@ $lista = $_SESSION['lista'];
     <!-- NAVBAR -->
     <p></p>
     <div class="d-flex justify-content-center">
-        <h1>PORTAL DE OBJETOS</h1>
+        <h1 align="center"> PORTAL DE OBJETOS</h1>
     </div>
     <p></p>
     <div class="container">
@@ -95,9 +95,9 @@ $lista = $_SESSION['lista'];
             &nbsp &nbsp
             <input type="button" value="Filtrar" class="btn btn-dark" onclick="filtrar()" />
             <p></p>
+            <br>
 
-
-            <button class="btn btn-outline-secondary" style="margin-left: auto;" onclick="location=''">
+            <button class="btn btn-outline-secondary" id="catalogo" style="margin-left: auto;" onclick="location=''">
                 <img src="../vaince/Iconos/pdf.png" style="max-width: 20px; max-height: 20px;">
                 Solicitar Catalogo
             </button>
@@ -213,15 +213,15 @@ $lista = $_SESSION['lista'];
         </div>
         <div class="colum2">
             <div class="information">
-                <a href="https://www.facebook.com/vainglorygame">
+                <a href="https://www.facebook.com/vainglorygame" target="_blank">
                     <img src="../vaince/Iconos/facebook.png" alt=""></a>
             </div>
             <div class="information">
-                <a href="https://twitter.com/vainglory?lang=es">
+                <a href="https://twitter.com/vainglory?lang=es" target="_blank">
                     <img src="../vaince/Iconos/twitter.png" alt=""></a>
             </div>
             <div class="information">
-                <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ">
+                <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ" target="_blank">
                     <img src="../vaince/Iconos/youtube.png" alt=""></a>
             </div>
         </div>

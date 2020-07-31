@@ -41,7 +41,7 @@
     <p></p>
     <div class="d-flex justify-content-center">
 
-        <h1>Formulario de Ingreso VainCE</h1>
+        <h1 align="center">Formulario de Ingreso VainCE</h1>
 
     </div>
     <p></p>
@@ -100,15 +100,15 @@
         </div>
         <div class="colum2">
             <div class="information">
-                <a href="https://www.facebook.com/vainglorygame">
+                <a href="https://www.facebook.com/vainglorygame" target="_blank">
                     <img src="../vaince/Iconos/facebook.png" alt=""></a>
             </div>
             <div class="information">
-                <a href="https://twitter.com/vainglory?lang=es">
+                <a href="https://twitter.com/vainglory?lang=es" target="_blank">
                     <img src="../vaince/Iconos/twitter.png" alt=""></a>
             </div>
             <div class="information">
-                <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ">
+                <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ" target="_blank">
                     <img src="../vaince/Iconos/youtube.png" alt=""></a>
             </div>
         </div>

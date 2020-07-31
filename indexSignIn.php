@@ -15,7 +15,7 @@ if (isset($_POST['name']) && isset($_POST['apellido']) && isset($_POST['mail']) 
         if ($passForm == $passConfirmForm) {
             //echo "Usuario validado";
             $registro->ingreso($nameForm, $apellForm, $emailForm, $passForm);
-            $success = "Usuario registrado con exito";
+            $success = "Usuario registrado con éxito";
         } else {
             //echo "Nombre de usuario o password incorrecto";
             $errorPass = "Las contraseñas no coinciden";

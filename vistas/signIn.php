@@ -41,7 +41,7 @@
     <p></p>
     <div class="d-flex justify-content-center">
 
-        <h1>Formulario de Registro VainCE</h1>
+        <h1 align="center">Formulario de Registro VainCE</h1>
 
     </div>
     <p></p>
@@ -55,14 +55,14 @@
             <form action="" method="POST">
                 <?php
                 if (isset($errorPass)) {
-                    echo '<script language="javascript">alert("Las contraseñas no coinciden");</script>';
+                    echo '<script language="javascript">alert("Las contraseñas no coinciden!");</script>';
                     
                 }
                 if (isset($success)) {
-                    echo '<script language="javascript">alert("Usuario ingresado con exito");</script>';
+                    echo '<script language="javascript">alert("Usuario ingresado con éxito");</script>';
                 }
                 if (isset($errorExist)) {
-                    echo '<script language="javascript">alert("El usuario ya existe");</script>';
+                    echo '<script language="javascript">alert("El usuario ya existe!");</script>';
                 }
                 ?>
 
@@ -124,15 +124,15 @@
         </div>
         <div class="colum2">
             <div class="information">
-                <a href="https://www.facebook.com/vainglorygame">
+                <a href="https://www.facebook.com/vainglorygame" target="_blank">
                     <img src="../vaince/Iconos/facebook.png" alt=""></a>
             </div>
             <div class="information">
-                <a href="https://twitter.com/vainglory?lang=es">
+                <a href="https://twitter.com/vainglory?lang=es" target="_blank">
                     <img src="../vaince/Iconos/twitter.png" alt=""></a>
             </div>
             <div class="information">
-                <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ">
+                <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ" target="_blank">
                     <img src="../vaince/Iconos/youtube.png" alt=""></a>
             </div>
         </div>

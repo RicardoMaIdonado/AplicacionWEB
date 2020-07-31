@@ -20,8 +20,8 @@ if (sizeof($listado) < 6 && (sizeof($listado)+$cantidad)<=6) {
     echo '<script language="javascript">alert("Agregado con exito");</script>';
     //echo "agregado con exito";
 } else {
-    echo "no hay espacio ";
-    echo "solo queda ";
-    echo (6-sizeof($listado));
+    $value = (6-sizeof($listado));
+    $dat = "Insuficiente espacio en el carrito. Espacio disponible: " . $value . " objetos más.";
+    echo '<script type="text/javascript">alert("' . $dat . '")</script>';
 }
 include_once 'carritoPersonal.php';

@@ -59,7 +59,7 @@
     </section>
     <!-- CONTENIDDO -->
     <div class="d-flex justify-content-center">
-        <h1>Perfil de Usuario VainCE</h1>
+        <h1 align="center">Perfil de Usuario VainCE</h1>
     </div>
 
     <div class="container d-flex justify-content-center">
@@ -114,24 +114,24 @@
             <form action="actualizacionPass.php" method="POST">
                 <?php
                 if (isset($errorPass)) {
-                    echo '<script language="javascript">alert("Las contraseñas no coinciden");</script>';
+                    echo '<script language="javascript">alert("Las contraseñas no coinciden!");</script>';
                 }
                 if (isset($successP)) {
-                    echo '<script language="javascript">alert("Contraseña actualizada con exito");</script>';
+                    echo '<script language="javascript">alert("Contraseña actualizada con éxito");</script>';
                 }
                 ?>
                 <div class="card-body">
                     <div class="container">
                         <h5 class="card-title">Contraseña:</h5>
                         <div class="input">
-                            <input name="password" required type="password" placeholder="eg. X8df!90EO" title="Debe contener al menos un número y una letra minúscula y mayúscula, y al menos 8 o más caracteres" />
+                            <input name="password" required type="password" placeholder="eg. X8df!90EO" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe contener al menos un número y una letra minúscula y mayúscula, y al menos 8 o más caracteres" />
                         </div>
                         &nbsp
                     </div>
                     <div class="container">
                         <h5 class="card-title">Confirmar contraseña:</h5>
                         <div class="input">
-                            <input name="password_confirm" required type="password" placeholder="eg. X8df!90EO" title="Debe contener al menos un número y una letra minúscula y mayúscula, y al menos 8 o más caracteres" />
+                            <input name="password_confirm" required type="password" placeholder="eg. X8df!90EO" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe contener al menos un número y una letra minúscula y mayúscula, y al menos 8 o más caracteres" />
                         </div>
                         &nbsp
                     </div>
@@ -157,15 +157,15 @@
         </div>
         <div class="colum2">
             <div class="information">
-                <a href="https://www.facebook.com/vainglorygame">
+                <a href="https://www.facebook.com/vainglorygame" target="_blank">
                     <img src="facebook.png" alt=""></a>
             </div>
             <div class="information">
-                <a href="https://twitter.com/vainglory?lang=es">
+                <a href="https://twitter.com/vainglory?lang=es" target="_blank">
                     <img src="twitter.png" alt=""></a>
             </div>
             <div class="information">
-                <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ">
+                <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ" target="_blank">
                     <img src="youtube.png" alt=""></a>
             </div>
         </div>
