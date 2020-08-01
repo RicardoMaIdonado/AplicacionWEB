@@ -103,7 +103,7 @@ $lista = $_SESSION['lista'];
             <p></p>
             <br>
 
-            <button class="btn btn-outline-secondary" id="catalogo" style="margin-left: auto;" onclick="location=''">
+            <button class="btn btn-outline-secondary" id="catalogo" style="margin-left: auto;" onclick="location='vistas/nuevo.php?nueva=10'">
                 <img src="../vaince/Iconos/pdf.png" style="max-width: 20px; max-height: 20px;">
                 Solicitar Catalogo
             </button>

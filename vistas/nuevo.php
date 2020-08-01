@@ -62,9 +62,16 @@ if (isset($_SESSION['user'])) {
         $precioscompra = $_SESSION['precioscompra'];
 
         $ult = 0;
+        $fec = '';
+        $hor = '';
         $ultimo = $pedido->getUltimoPedido();
         foreach ($ultimo as $re) {
             $ult = $re[0];
+        }
+        $ulte = $pedido->getFechaHoraID($ult);
+        foreach ($ulte as $rele) {
+            $fec = $rele[2];
+            $hor = $rele[3];
         }
 
         $idsobjetos = array();
@@ -94,6 +101,14 @@ if (isset($_SESSION['user'])) {
         $pdf->AddPage();
         $pdf->SetFillColor(1, 232, 232);
         $pdf->SetFont('Arial', 'B', 12);
+        
+        $pdf->Cell(70, 6, ' ', 0, 1, 'C');
+        $pdf->Cell(107, 6, utf8_decode('USUARIO: '.$user->getUser()), 0, 1, 'C');
+        $pdf->Cell(70, 6, ' ', 0, 1, 'C');
+
+        $pdf->Cell(130, 6, utf8_decode('FECHA DE COMPRA: '.$fec.' a las '.$hor), 0, 1, 'C');
+        $pdf->Cell(70, 6, ' ', 0, 1, 'C');
+        $pdf->Cell(70, 6, ' ', 0, 1, 'C');
 
         $pdf->Cell(70, 6, 'Nombre objeto', 1, 0, 'C', 1);
         $pdf->Cell(30, 6, 'Cantidad', 1, 0, 'C', 1);
@@ -108,15 +123,64 @@ if (isset($_SESSION['user'])) {
         $pdf->Cell(100, 6, 'Total a pagar', 1, 0, 'R', 1);
         $pdf->Cell(30, 6, $_SESSION["totalprecio"], 1, 1, 'C');
         $pdf->Cell(70, 6, ' ', 0, 1, 'C');
+        $pdf->Cell(70, 6, ' ', 0, 1, 'C');
+        $pdf->Cell(190, 6, utf8_decode('ESTADÍSTICAS DE LA CONSTRUCCIÓN'), 0, 1, 'C');
+        $pdf->Cell(70, 6, ' ', 0, 1, 'C');
         for ($h = 0; $h < sizeof($estats); $h++) {
-            $pdf->Cell(70, 6, utf8_decode($estats[$h]), 0, 1, 'C');
+            $pdf->Cell(185, 6, utf8_decode($estats[$h]), 0, 1, 'C');
         }
 
-        $pdf->Output('F', 'C:/Users/CRISR/Downloads/Documents/prueba.pdf');
+        $pdf->Output('F', 'C:/Users/CRISR/Downloads/Documents/Pedido'.$ult.'.pdf');
 
         unset($_SESSION['listado']);
         $_SESSION['listado'] = array();
         //include_once '../vistas/carritoPersonal.php';
         header('Location: ../indexLogin.php?op=0&niv=0&c=1');
+    } else if ($_REQUEST['nueva'] == 10) {
+        include '../plantillaC.php';
+
+        $productos = new Producto();
+        $lista = array();
+        $lista = $_SESSION['lista'];
+
+        $pdf = new PDF();
+        $pdf->AliasNbPages();
+
+        $pdf->AddPage();
+        $pdf->SetFillColor(232, 232, 232);
+        $pdf->SetFont('Arial', 'B', 12);
+
+        foreach ($lista as $reg) {
+            $image = "C:/xampp/htdocs/vaince/Imagenes/".$reg[17];
+            $img = imagecreatefrompng($image);
+
+            imagealphablending($img, false);
+            imagesavealpha($img, true);
+
+            imageinterlace($img, 0);
+            imagepng($img, "C:/xampp/htdocs/vaince/Imagenes/".$reg[17]);
+
+            $pdf->Cell(80, 6, $reg[1], 1, 1, 'C', 1);
+            $pdf->Cell(30, 30, $pdf->Image('C:/xampp/htdocs/vaince/Imagenes/'.$reg[17], $pdf->GetX(), $pdf->GetY(), 30), 1, 0, 'C');
+            $pdf->Cell(30, 6, '', 0, 1, 'C');
+            $pdf->Cell(30, 0, '', 0, 0, 'C');
+            if ($reg[12]==1) {
+                $pdf->Cell(30, 6, '         Tipo: Arma' , 0, 1, 'C');
+            }else if ($reg[12]==2) {
+                $pdf->Cell(30, 6, '         Tipo: Cristal' , 0, 1, 'C');
+            }else if ($reg[12]==3) {
+                $pdf->Cell(30, 6, '         Tipo: Defensa' , 0, 1, 'C');
+            }else if ($reg[12]==4) {
+                $pdf->Cell(30, 6, '         Tipo: Utilidad' , 0, 1, 'C');
+            }else if ($reg[12]==5) {
+                $pdf->Cell(30, 6, '         Tipo: Consumible' , 0, 1, 'C');
+            }
+            $pdf->Cell(30, 0, '', 0, 0, 'C');
+            $pdf->Cell(30, 6, '     Precio: ' . $reg[2], 0, 1, 'C');
+            $pdf->Ln(25);
+        }
+        $pdf->Output('F', 'C:/Users/CRISR/Downloads/Documents/Catalogo_Objetos_VainCE.pdf');
+      
+        header('Location: ../indexLogin.php?op=0&niv=0&cat=1');
     }
 }

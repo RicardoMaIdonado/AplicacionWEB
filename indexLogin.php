@@ -18,6 +18,9 @@ if (isset($_SESSION['user'])) {
     if (isset($_REQUEST['c'])) {
         echo '<script type="text/javascript">alert("Compra realizada exitosamente")</script>';
     }
+    if (isset($_REQUEST['cat'])) {
+        echo '<script type="text/javascript">alert("Catálogo generado exitosamente")</script>';
+    }
     include_once 'controlador/IndexLog.php';
 } else if (isset($_POST['mail']) && isset($_POST['password'])) {
     //echo "validacion de login";
