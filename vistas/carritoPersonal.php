@@ -178,7 +178,7 @@ $listado = $_SESSION['listado'];
 
             $conjunto[] = $objeto;
         }
-
+        $valores = array();
         foreach ($repetidas as $para) {
             $cant = 0;
             $pre = 0;
@@ -192,9 +192,10 @@ $listado = $_SESSION['listado'];
 
             $cantidades[] = $cant;
             $precios[] = $pre;
+            $valores[] = $para;
         }
 
-        $_SESSION["objetoscompra"]=$repetidas;
+        $_SESSION["objetoscompra"]=$valores;
         $_SESSION["cantidadescompra"]=$cantidades;
         $_SESSION["precioscompra"]=$precios;
 
@@ -300,10 +301,13 @@ $listado = $_SESSION['listado'];
 
     <div align="center">
         <?php
+        $estadisticas = array();
+        
         if ($totalarma != 0) {
         ?>
             <p><b>Daño de cristal:</b> +<?php echo $totalarma; ?> de potencia</p>
         <?php
+        $estadisticas[] = "Daño de cristal: " . $totalarma;
         }
         ?>
         <?php
@@ -311,6 +315,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Daño de arma:</b> +<?php echo $totalcristal; ?> de potencia</p>
         <?php
+        $estadisticas[] = "Daño de arma: " . $totalcristal;
         }
         ?>
         <?php
@@ -318,6 +323,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Escudo:</b> +<?php echo $totalescudo; ?></p>
         <?php
+        $estadisticas[] = "Escudo: " . $totalescudo;
         }
         ?>
         <?php
@@ -325,6 +331,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Salud:</b> +<?php echo $totalsalud; ?> %</p>
         <?php
+        $estadisticas[] = "Salud: " . $totalsalud;
         }
         ?>
         <?php
@@ -332,6 +339,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Armadura:</b> +<?php echo $totalarm; ?></p>
         <?php
+        $estadisticas[] = "Armadura: " . $totalarm;
         }
         ?>
         <?php
@@ -339,6 +347,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Velocidad de ataque:</b> +<?php echo $totalvelataque; ?> %</p>
         <?php
+        $estadisticas[] = "Velocidad de ataque: " . $totalvelataque;
         }
         ?>
         <?php
@@ -346,6 +355,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Daño crítico:</b> +<?php echo $totaldcri; ?> %</p>
         <?php
+        $estadisticas[] = "Daño crítico: " . $totaldcri;
         }
         ?>
         <?php
@@ -353,6 +363,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Probabilidad de crítico:</b> +<?php echo $totalpcri; ?> %</p>
         <?php
+        $estadisticas[] = "Posibilidad de crítico: " . $totalpcri;
         }
         ?>
         <?php
@@ -360,6 +371,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Vampirismo:</b> +<?php echo $totalvamp; ?> %</p>
         <?php
+        $estadisticas[] = "Vampirismo: " . $totalvamp;
         }
         ?>
         <?php
@@ -367,6 +379,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Perforación de armadura:</b> +<?php echo $totalperarm; ?> %</p>
         <?php
+        $estadisticas[] = "Perforación de armadura: " . $totalperarm;
         }
         ?>
         <?php
@@ -374,6 +387,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Reducción de reposo:</b> +<?php echo $totalredrep; ?> %</p>
         <?php
+        $estadisticas[] = "Reducción de reposo: " . $totalredrep;
         }
         ?>
         <?php
@@ -381,6 +395,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Recarga de energía:</b> +<?php echo $totalenerrec; ?></p>
         <?php
+        $estadisticas[] = "Recarga de energía: " . $totalenerrec;
         }
         ?>
         <?php
@@ -388,6 +403,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Energía máxima:</b> +<?php echo $totalenermax; ?> %</p>
         <?php
+        $estadisticas[] = "Energía máxima: " . $totalenermax;
         }
         ?>
         <?php
@@ -395,8 +411,10 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Perforación de escudo:</b> +<?php echo $totalperesc; ?> %</p>
         <?php
+        $estadisticas[] = "Perforación de escudo: " . $totalperesc;
         }
         $_SESSION["totalprecio"]=$totalprecio;
+        $_SESSION["estadisticas"]=$estadisticas;
         ?>
         <br>
         <p></p>
