@@ -95,19 +95,24 @@ $listado = $_SESSION['listado'];
                 </li>
             </ul>
             <div class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-secondary my-2 my-sm-0 justify-content-center" onclick="location='nuevo.php?nueva=3'">
-                    <img src="user.png" style="max-width: 20px; max-height: 20px;">
-                    <div style="color:white;"><?php echo $user->getName(); ?></div>
-                </button>
+                <div id="botonP" class="btn-group" role="group" aria-label="Button group with nested dropdown" style="margin-left: auto;">
+                    <div class="btn-group" role="group">
+                        <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="../Iconos/user.png" style="max-width: 20px; max-height: 20px;">
+                            <?php echo $user->getName(); ?>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="http://localhost/vaince/vistas/nuevo.php?nueva=3">Perfil</a>
+                            <a class="dropdown-item" href="http://localhost/vaince/includes/logout.php">Cerrar Sesión</a>
+
+                        </div>
+                    </div>
+                </div>
+
                 &nbsp
-                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='nuevo.php?nueva=5'">
-                    <img src="shopping-cart.png" style="max-width: 20px; max-height: 20px;">
-                    <div style="color:white;">Carrito</div>
-                </button>
-                &nbsp
-                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='../includes/logout.php'">
-                    <img src="../Iconos/logout.png" style="max-width: 20px; max-height: 20px;">
-                    <div style="color:white;">Cerrar Sesión</div>
+                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='nuevo.php?nueva=5'">
+                    <img src="../Iconos/shopping-cart.png" style="max-width: 20px; max-height: 20px;">
+                    Carrito
                 </button>
 
             </div>
@@ -141,9 +146,9 @@ $listado = $_SESSION['listado'];
 
 
         $repetidas = array_unique($listado);
-        
+
         $cantidades = array();
-        
+
         $precios = array();
 
         sort($listado);
@@ -195,9 +200,9 @@ $listado = $_SESSION['listado'];
             $valores[] = $para;
         }
 
-        $_SESSION["objetoscompra"]=$valores;
-        $_SESSION["cantidadescompra"]=$cantidades;
-        $_SESSION["precioscompra"]=$precios;
+        $_SESSION["objetoscompra"] = $valores;
+        $_SESSION["cantidadescompra"] = $cantidades;
+        $_SESSION["precioscompra"] = $precios;
 
         $totalprecio = 0;
         $totalarma = 0;
@@ -302,12 +307,12 @@ $listado = $_SESSION['listado'];
     <div align="center">
         <?php
         $estadisticas = array();
-        
+
         if ($totalarma != 0) {
         ?>
             <p><b>Daño de cristal:</b> +<?php echo $totalarma; ?> de potencia</p>
         <?php
-        $estadisticas[] = "Daño de cristal: " . $totalarma;
+            $estadisticas[] = "Daño de cristal: " . $totalarma;
         }
         ?>
         <?php
@@ -315,7 +320,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Daño de arma:</b> +<?php echo $totalcristal; ?> de potencia</p>
         <?php
-        $estadisticas[] = "Daño de arma: " . $totalcristal;
+            $estadisticas[] = "Daño de arma: " . $totalcristal;
         }
         ?>
         <?php
@@ -323,7 +328,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Escudo:</b> +<?php echo $totalescudo; ?></p>
         <?php
-        $estadisticas[] = "Escudo: " . $totalescudo;
+            $estadisticas[] = "Escudo: " . $totalescudo;
         }
         ?>
         <?php
@@ -331,7 +336,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Salud:</b> +<?php echo $totalsalud; ?> %</p>
         <?php
-        $estadisticas[] = "Salud: " . $totalsalud;
+            $estadisticas[] = "Salud: " . $totalsalud;
         }
         ?>
         <?php
@@ -339,7 +344,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Armadura:</b> +<?php echo $totalarm; ?></p>
         <?php
-        $estadisticas[] = "Armadura: " . $totalarm;
+            $estadisticas[] = "Armadura: " . $totalarm;
         }
         ?>
         <?php
@@ -347,7 +352,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Velocidad de ataque:</b> +<?php echo $totalvelataque; ?> %</p>
         <?php
-        $estadisticas[] = "Velocidad de ataque: " . $totalvelataque;
+            $estadisticas[] = "Velocidad de ataque: " . $totalvelataque;
         }
         ?>
         <?php
@@ -355,7 +360,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Daño crítico:</b> +<?php echo $totaldcri; ?> %</p>
         <?php
-        $estadisticas[] = "Daño crítico: " . $totaldcri;
+            $estadisticas[] = "Daño crítico: " . $totaldcri;
         }
         ?>
         <?php
@@ -363,7 +368,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Probabilidad de crítico:</b> +<?php echo $totalpcri; ?> %</p>
         <?php
-        $estadisticas[] = "Posibilidad de crítico: " . $totalpcri;
+            $estadisticas[] = "Posibilidad de crítico: " . $totalpcri;
         }
         ?>
         <?php
@@ -371,7 +376,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Vampirismo:</b> +<?php echo $totalvamp; ?> %</p>
         <?php
-        $estadisticas[] = "Vampirismo: " . $totalvamp;
+            $estadisticas[] = "Vampirismo: " . $totalvamp;
         }
         ?>
         <?php
@@ -379,7 +384,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Perforación de armadura:</b> +<?php echo $totalperarm; ?> %</p>
         <?php
-        $estadisticas[] = "Perforación de armadura: " . $totalperarm;
+            $estadisticas[] = "Perforación de armadura: " . $totalperarm;
         }
         ?>
         <?php
@@ -387,7 +392,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Reducción de reposo:</b> +<?php echo $totalredrep; ?> %</p>
         <?php
-        $estadisticas[] = "Reducción de reposo: " . $totalredrep;
+            $estadisticas[] = "Reducción de reposo: " . $totalredrep;
         }
         ?>
         <?php
@@ -395,7 +400,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Recarga de energía:</b> +<?php echo $totalenerrec; ?></p>
         <?php
-        $estadisticas[] = "Recarga de energía: " . $totalenerrec;
+            $estadisticas[] = "Recarga de energía: " . $totalenerrec;
         }
         ?>
         <?php
@@ -403,7 +408,7 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Energía máxima:</b> +<?php echo $totalenermax; ?> %</p>
         <?php
-        $estadisticas[] = "Energía máxima: " . $totalenermax;
+            $estadisticas[] = "Energía máxima: " . $totalenermax;
         }
         ?>
         <?php
@@ -411,10 +416,10 @@ $listado = $_SESSION['listado'];
         ?>
             <p><b>Perforación de escudo:</b> +<?php echo $totalperesc; ?> %</p>
         <?php
-        $estadisticas[] = "Perforación de escudo: " . $totalperesc;
+            $estadisticas[] = "Perforación de escudo: " . $totalperesc;
         }
-        $_SESSION["totalprecio"]=$totalprecio;
-        $_SESSION["estadisticas"]=$estadisticas;
+        $_SESSION["totalprecio"] = $totalprecio;
+        $_SESSION["estadisticas"] = $estadisticas;
         ?>
         <br>
         <p></p>

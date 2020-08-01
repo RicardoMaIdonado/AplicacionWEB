@@ -12,25 +12,26 @@
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="http://localhost/vaince/inicio.html"><div style = "font-family:monaco;font-size:larger">VAINCE</div></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="http://localhost/vaince/inicio.html">
+            <div style="font-family:monaco;font-size:larger">VAINCE</div>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-               
+
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='http://localhost/vaince/indexLogin.php'">
+                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='http://localhost/vaince/indexLogin.php'">
                     <img src="../vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
-                    <div style="color:white;">Iniciar Sesion</div>
+                    Iniciar Sesion
                 </button>
                 &nbsp
-                <button class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='http://localhost/vaince/indexSignIn.php'">
+                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='http://localhost/vaince/indexSignIn.php'">
                     <img src="../vaince/Iconos/signin.png" style="max-width: 20px; max-height: 20px;">
-                    <div style="color:white;">Registrarse</div>
+                    Registrarse
                 </button>
             </form>
         </div>
@@ -56,7 +57,6 @@
                 <?php
                 if (isset($errorPass)) {
                     echo '<script language="javascript">alert("Las contraseñas no coinciden!");</script>';
-                    
                 }
                 if (isset($success)) {
                     echo '<script language="javascript">alert("Usuario ingresado con éxito");</script>';

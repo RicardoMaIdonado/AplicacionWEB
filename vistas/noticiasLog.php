@@ -21,7 +21,9 @@
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand"><div style = "font-family:monaco;font-size:larger">VAINCE</div></a>
+        <a class="navbar-brand">
+            <div style="font-family:monaco;font-size:larger">VAINCE</div>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,31 +31,41 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/indexLogin.php?op=0&niv=0"><div style="color:white;">Objetos</div></a>
+                    <a class="nav-link" href="http://localhost/vaince/indexLogin.php?op=0&niv=0">
+                        <div style="color:white;">Objetos</div>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=1"><div style="color:white;">Noticias</div></a>
+                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=1">
+                        <div style="color:white;">Noticias</div>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=0"><div style="color:white;">Comunidad</div></a>
+                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=0">
+                        <div style="color:white;">Comunidad</div>
+                    </a>
                 </li>
             </ul>
             <div class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-secondary my-2 my-sm-0 justify-content-center" onclick="location='nuevo.php?nueva=3'">
-                    <img src="user.png" style="max-width: 20px; max-height: 20px; margin-right: 0;">
-                    <div style="color:white;"><?php echo $user->getName(); ?></div>
-                </button>
-                &nbsp
-                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='nuevo.php?nueva=5'">
-                    <img src="shopping-cart.png" style="max-width: 20px; max-height: 20px; margin-right: 0;">
-                    <div style="color:white;">Carrito</div>
-                </button>
-                &nbsp
-                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='../includes/logout.php'">
-                    <img src="../Iconos/logout.png" style="max-width: 20px; max-height: 20px; margin-right: 0px;">
-                    <div style="color:white;">Cerrar Sesión</div>
-                </button>
+                <div id="botonP" class="btn-group" role="group" aria-label="Button group with nested dropdown" style="margin-left: auto;">
+                    <div class="btn-group" role="group">
+                        <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="../Iconos/user.png" style="max-width: 20px; max-height: 20px;margin-right: 0px;">
+                            <?php echo $user->getName(); ?>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="http://localhost/vaince/vistas/nuevo.php?nueva=3">Perfil</a>
+                            <a class="dropdown-item" href="http://localhost/vaince/includes/logout.php">Cerrar Sesión</a>
 
+                        </div>
+                    </div>
+                </div>
+
+                &nbsp
+                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='nuevo.php?nueva=5'">
+                    <img src="../Iconos/shopping-cart.png" style="max-width: 20px; max-height: 20px;margin-right: 0px;">
+                    Carrito
+                </button>
             </div>
         </div>
     </nav>
@@ -140,20 +152,20 @@
             <div class="card-body">
                 <p style="text-align: justify;">
                     <img src="../Imagenes/noticia3.jfif" class="img-fluid" alt="Vainglory Community Edition" align="left" title="Captura tomada desde dispositivo móvil en la pantalla de inicio de Vainglory CE.">
-                    Los procesos de desarrollo dentro de la nueva implementación de Vainglory se siguen 
+                    Los procesos de desarrollo dentro de la nueva implementación de Vainglory se siguen
                     retrasando. Esto debido a la iniciativa puesta en el proyecto Catalyst Black. Los servidores de Vainglory continúan
                     en funcionamiento y el nuevo diseño de pantallas de inicio y componentes funcionales dentro del juego
-                    ya se encuentran disponibles para su uso en la aplicación, esto con el afán de que Vainglory todavía sea jugable, esto 
+                    ya se encuentran disponibles para su uso en la aplicación, esto con el afán de que Vainglory todavía sea jugable, esto
                     facilita que mientras no se lancen las características restantes, los fanáticos del juego continúen utilizándolo para su diversión.
-                    Se aclara además por parte de SuperEvilMegaCorp que la cantidad de tiempo empleado para intentar reconstruir Vainglory con los recursos 
+                    Se aclara además por parte de SuperEvilMegaCorp que la cantidad de tiempo empleado para intentar reconstruir Vainglory con los recursos
                     facilitados por Rogue Games fue claramente mayor al esperado, teniendo en cuenta quue no es sostenible de ninguna forma.
                     Es por esto que al lanzamiento de la fase 1-b se pretende que el juego continúe en funcionamiento estable, lamentablemente se informa que este paso
-                    es lo más lejos que se puede llevar a Vainglory. 
+                    es lo más lejos que se puede llevar a Vainglory.
                     Se mantiene en pie la propuesta de continuar con Vainglory una vez concluido el lanzamiento de Catalyst Black, teniendo éxito en aquello se puede
                     seguir con Vainglory en su versión comunitaria.
-                    Por lo pronto el juego se mantiene disponible para su descarga en las diferentes plataformas, teniendo la posibilidad de colocar un nickname una vez 
-                    iniciado el juego en el dispositivo, donde las partidas tienen varios minutos de espera, héroes disponibles para utilizar más no sus skins, el modo ranked 
-                    3vs3 es una de las alternativas preferidas de los jugadores donde el tiempo de espera es menor. Se aclara además que no se pueden formar grupos teniendo 
+                    Por lo pronto el juego se mantiene disponible para su descarga en las diferentes plataformas, teniendo la posibilidad de colocar un nickname una vez
+                    iniciado el juego en el dispositivo, donde las partidas tienen varios minutos de espera, héroes disponibles para utilizar más no sus skins, el modo ranked
+                    3vs3 es una de las alternativas preferidas de los jugadores donde el tiempo de espera es menor. Se aclara además que no se pueden formar grupos teniendo
                     que planear en conjunto la posibilidad de ingresar al mismo tiempo a la cola de espera y así poder jugarlo ya sea en el mismo equipo o en contra.
 
                 </p>

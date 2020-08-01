@@ -16,10 +16,10 @@ if (isset($_SESSION['user'])) {
         $_SESSION['niv'] = $_REQUEST['niv'];
     }
     if (isset($_REQUEST['c'])) {
-        echo '<script type="text/javascript">alert("Compra realizada exitosamente")</script>';
+        echo '<script type="text/javascript">alert("Pedido realizado exitosamente. Revise su correo para ver los detalles de su pedido!")</script>';
     }
     if (isset($_REQUEST['cat'])) {
-        echo '<script type="text/javascript">alert("Catálogo generado exitosamente")</script>';
+        echo '<script type="text/javascript">alert("El catálogo ha sido enviado a su correo!")</script>';
     }
     include_once 'controlador/IndexLog.php';
 } else if (isset($_POST['mail']) && isset($_POST['password'])) {

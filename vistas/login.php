@@ -23,14 +23,14 @@
                
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='http://localhost/vaince/indexLogin.php'">
+                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='http://localhost/vaince/indexLogin.php'">
                     <img src="../vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
-                    <div style="color:white;">Iniciar Sesion</div>
+                    Iniciar Sesion
                 </button>
                 &nbsp
-                <button class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='http://localhost/vaince/indexSignIn.php'">
+                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='http://localhost/vaince/indexSignIn.php'">
                     <img src="../vaince/Iconos/signin.png" style="max-width: 20px; max-height: 20px;">
-                    <div style="color:white;">Registrarse</div>
+                    Registrarse
                 </button>
             </form>
         </div>
@@ -89,7 +89,7 @@
         <p> <i> Aun no te has registrado? </i> Haslo <a href="indexSignIn.php"> aquí</a></p>
     </div>
 
-    <div style="min-height: 1vh;"></div>
+    <div style="min-height: 3vh;"></div>
     <!-- Footer -->
     <footer class="page-footer font-small mdb-color darken-3 pt-4">
         <div class="colum1">

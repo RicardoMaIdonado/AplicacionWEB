@@ -21,8 +21,13 @@ $lista = $_SESSION['lista'];
                 margin-top: 10px;
             }
 
-        }
+            #boton {
+                margin-top: 10px;
+                margin-right: auto;
+                margin-left: 0px;
+            }
 
+        }
     </style>
 </head>
 
@@ -56,19 +61,25 @@ $lista = $_SESSION['lista'];
                 </li>
             </ul>
             <div class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-secondary my-2 my-sm-0 justify-content-center" onclick="location='vistas/nuevo.php?nueva=3'">
-                    <img src="../vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
-                    <div style="color:white;"><?php echo $user->getName(); ?></div>
-                </button>
+
+                <div id="botonP" class="btn-group" role="group" aria-label="Button group with nested dropdown" style="margin-left: auto;">
+                    <div class="btn-group" role="group">
+                        <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="../vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
+                            <?php echo $user->getName(); ?>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="http://localhost/vaince/vistas/nuevo.php?nueva=3">Perfil</a>
+                            <a class="dropdown-item" href="http://localhost/vaince/includes/logout.php">Cerrar Sesión</a>
+
+                        </div>
+                    </div>
+                </div>
+
                 &nbsp
-                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='vistas/nuevo.php?nueva=5'">
+                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='vistas/nuevo.php?nueva=5'">
                     <img src="../vaince/Iconos/shopping-cart.png" style="max-width: 20px; max-height: 20px;">
-                    <div style="color:white;">Carrito</div>
-                </button>
-                &nbsp
-                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='../vaince/includes/logout.php'">
-                    <img src="../vaince/Iconos/logout.png" style="max-width: 20px; max-height: 20px;">
-                    <div style="color:white;">Cerrar Sesión</div>
+                    Carrito
                 </button>
 
             </div>
@@ -101,12 +112,20 @@ $lista = $_SESSION['lista'];
             &nbsp &nbsp
             <input type="button" value="Filtrar" class="btn btn-dark" onclick="filtrar()" />
             <p></p>
-            <br>
 
-            <button class="btn btn-outline-secondary" id="catalogo" style="margin-left: auto;" onclick="location='vistas/nuevo.php?nueva=10'">
-                <img src="../vaince/Iconos/pdf.png" style="max-width: 20px; max-height: 20px;">
-                Solicitar Catalogo
-            </button>
+            <div id="boton" class="btn-group" role="group" aria-label="Button group with nested dropdown" style="margin-left: auto;">
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../vaince/Iconos/pdf.png" style="max-width: 20px; max-height: 20px;">
+                        Solicitar Catálogo
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a class="dropdown-item" href="http://localhost/vaince/vistas/nuevo.php?nueva=10">Visualizar PDF</a>
+                        <a class="dropdown-item" href="http://localhost/vaince/vistas/nuevo.php?nueva=11">Envíar por correo</a>
+
+                    </div>
+                </div>
+            </div>
 
         </div>
 

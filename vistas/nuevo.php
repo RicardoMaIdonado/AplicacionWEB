@@ -4,6 +4,18 @@ include_once '../includes/user.php';
 include_once '../includes/productos.php';
 include_once '../includes/user_session.php';
 
+
+//lo siguiente es necesario para la parte de envio del pedido por correo en formato pdf
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../includes/Exception.php';
+require '../includes/PHPMailer.php';
+require '../includes/SMTP.php';
+
+//
+
 $userSession = new UserSession();
 $user = new User();
 $producto = new Producto();
@@ -101,12 +113,12 @@ if (isset($_SESSION['user'])) {
         $pdf->AddPage();
         $pdf->SetFillColor(1, 232, 232);
         $pdf->SetFont('Arial', 'B', 12);
-        
+
         $pdf->Cell(70, 6, ' ', 0, 1, 'C');
-        $pdf->Cell(107, 6, utf8_decode('USUARIO: '.$user->getUser()), 0, 1, 'C');
+        $pdf->Cell(107, 6, utf8_decode('USUARIO: ' . $user->getUser()), 0, 1, 'C');
         $pdf->Cell(70, 6, ' ', 0, 1, 'C');
 
-        $pdf->Cell(130, 6, utf8_decode('FECHA DE COMPRA: '.$fec.' a las '.$hor), 0, 1, 'C');
+        $pdf->Cell(130, 6, utf8_decode('FECHA DE COMPRA: ' . $fec . ' a las ' . $hor), 0, 1, 'C');
         $pdf->Cell(70, 6, ' ', 0, 1, 'C');
         $pdf->Cell(70, 6, ' ', 0, 1, 'C');
 
@@ -130,7 +142,41 @@ if (isset($_SESSION['user'])) {
             $pdf->Cell(185, 6, utf8_decode($estats[$h]), 0, 1, 'C');
         }
 
-        $pdf->Output('F', 'C:/Users/CRISR/Downloads/Documents/Pedido'.$ult.'.pdf');
+        $pdf->Output('F', 'C:/xampp/htdocs/vaince/Pedidos/Pedido' . $ult . '.pdf');
+
+        $mail = new PHPMailer(true);
+
+        try {
+            //Server settings
+            $mail->SMTPDebug = 0;                      // Enable verbose debug output
+            $mail->isSMTP();                                            // Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+            $mail->Username   = 'respaldos602@gmail.com';                     // SMTP username
+            $mail->Password   = 'pandemia411';                               // SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+            $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+
+            //Recipients
+            $mail->setFrom('respaldos602@gmail.com', 'Administrador VAINCE');
+            $mail->addAddress($user->getUser());     // Add a recipient
+
+            // Attachments
+            $mail->addAttachment('C:/xampp/htdocs/vaince/Pedidos/Pedido' . $ult . '.pdf');         // Add attachments
+
+            // Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = utf8_decode('Factura de pedido realizado en la Plataforma VainCE.');
+            $mail->Body    = utf8_decode('Se adjunta la factura del pedido reciente realizado en nuestra plataforma web VainCE. Además 
+            se añade a esto los detalles de estadísticas de la construcción obtenida en base a su elección. Disfrute su prueba en el juego y no 
+            se olvide de visitarnos nuevamente!</b>');
+
+            $mail->send();
+            echo 'El mensaje se envio correctamente';
+        } catch (Exception $e) {
+            echo "Hubo un error al enviar el mensaje: {$mail->ErrorInfo}";
+        }
+
 
         unset($_SESSION['listado']);
         $_SESSION['listado'] = array();
@@ -151,36 +197,115 @@ if (isset($_SESSION['user'])) {
         $pdf->SetFont('Arial', 'B', 12);
 
         foreach ($lista as $reg) {
-            $image = "C:/xampp/htdocs/vaince/Imagenes/".$reg[17];
+            $image = "C:/xampp/htdocs/vaince/Imagenes/" . $reg[17];
             $img = imagecreatefrompng($image);
 
             imagealphablending($img, false);
             imagesavealpha($img, true);
 
             imageinterlace($img, 0);
-            imagepng($img, "C:/xampp/htdocs/vaince/Imagenes/".$reg[17]);
+            imagepng($img, "C:/xampp/htdocs/vaince/Imagenes/" . $reg[17]);
 
             $pdf->Cell(80, 6, $reg[1], 1, 1, 'C', 1);
-            $pdf->Cell(30, 30, $pdf->Image('C:/xampp/htdocs/vaince/Imagenes/'.$reg[17], $pdf->GetX(), $pdf->GetY(), 30), 1, 0, 'C');
+            $pdf->Cell(30, 30, $pdf->Image('C:/xampp/htdocs/vaince/Imagenes/' . $reg[17], $pdf->GetX(), $pdf->GetY(), 30), 1, 0, 'C');
             $pdf->Cell(30, 6, '', 0, 1, 'C');
             $pdf->Cell(30, 0, '', 0, 0, 'C');
-            if ($reg[12]==1) {
-                $pdf->Cell(30, 6, '         Tipo: Arma' , 0, 1, 'C');
-            }else if ($reg[12]==2) {
-                $pdf->Cell(30, 6, '         Tipo: Cristal' , 0, 1, 'C');
-            }else if ($reg[12]==3) {
-                $pdf->Cell(30, 6, '         Tipo: Defensa' , 0, 1, 'C');
-            }else if ($reg[12]==4) {
-                $pdf->Cell(30, 6, '         Tipo: Utilidad' , 0, 1, 'C');
-            }else if ($reg[12]==5) {
-                $pdf->Cell(30, 6, '         Tipo: Consumible' , 0, 1, 'C');
+            if ($reg[12] == 1) {
+                $pdf->Cell(30, 6, '         Tipo: Arma', 0, 1, 'C');
+            } else if ($reg[12] == 2) {
+                $pdf->Cell(30, 6, '         Tipo: Cristal', 0, 1, 'C');
+            } else if ($reg[12] == 3) {
+                $pdf->Cell(30, 6, '         Tipo: Defensa', 0, 1, 'C');
+            } else if ($reg[12] == 4) {
+                $pdf->Cell(30, 6, '         Tipo: Utilidad', 0, 1, 'C');
+            } else if ($reg[12] == 5) {
+                $pdf->Cell(30, 6, '         Tipo: Consumible', 0, 1, 'C');
             }
             $pdf->Cell(30, 0, '', 0, 0, 'C');
             $pdf->Cell(30, 6, '     Precio: ' . $reg[2], 0, 1, 'C');
             $pdf->Ln(25);
         }
-        $pdf->Output('F', 'C:/Users/CRISR/Downloads/Documents/Catalogo_Objetos_VainCE.pdf');
-      
+        $pdf->Output();
+
+        header('Location: ../indexLogin.php?op=0&niv=0&cat=1');
+    } else if ($_REQUEST['nueva'] == 11) {
+        include '../plantillaC.php';
+
+        $productos = new Producto();
+        $lista = array();
+        $lista = $_SESSION['lista'];
+
+        $pdf = new PDF();
+        $pdf->AliasNbPages();
+
+        $pdf->AddPage();
+        $pdf->SetFillColor(232, 232, 232);
+        $pdf->SetFont('Arial', 'B', 12);
+
+        foreach ($lista as $reg) {
+            $image = "C:/xampp/htdocs/vaince/Imagenes/" . $reg[17];
+            $img = imagecreatefrompng($image);
+
+            imagealphablending($img, false);
+            imagesavealpha($img, true);
+
+            imageinterlace($img, 0);
+            imagepng($img, "C:/xampp/htdocs/vaince/Imagenes/" . $reg[17]);
+
+            $pdf->Cell(80, 6, $reg[1], 1, 1, 'C', 1);
+            $pdf->Cell(30, 30, $pdf->Image('C:/xampp/htdocs/vaince/Imagenes/' . $reg[17], $pdf->GetX(), $pdf->GetY(), 30), 1, 0, 'C');
+            $pdf->Cell(30, 6, '', 0, 1, 'C');
+            $pdf->Cell(30, 0, '', 0, 0, 'C');
+            if ($reg[12] == 1) {
+                $pdf->Cell(30, 6, '         Tipo: Arma', 0, 1, 'C');
+            } else if ($reg[12] == 2) {
+                $pdf->Cell(30, 6, '         Tipo: Cristal', 0, 1, 'C');
+            } else if ($reg[12] == 3) {
+                $pdf->Cell(30, 6, '         Tipo: Defensa', 0, 1, 'C');
+            } else if ($reg[12] == 4) {
+                $pdf->Cell(30, 6, '         Tipo: Utilidad', 0, 1, 'C');
+            } else if ($reg[12] == 5) {
+                $pdf->Cell(30, 6, '         Tipo: Consumible', 0, 1, 'C');
+            }
+            $pdf->Cell(30, 0, '', 0, 0, 'C');
+            $pdf->Cell(30, 6, '     Precio: ' . $reg[2], 0, 1, 'C');
+            $pdf->Ln(25);
+        }
+        $pdf->Output('F', 'C:/xampp/htdocs/vaince/Catalogos/Catalogo' . $user->getID() . '.pdf');
+
+
+        $mail = new PHPMailer(true);
+
+        try {
+            //Server settings
+            $mail->SMTPDebug = 0;                      // Enable verbose debug output
+            $mail->isSMTP();                                            // Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+            $mail->Username   = 'respaldos602@gmail.com';                     // SMTP username
+            $mail->Password   = 'pandemia411';                               // SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+            $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+
+            //Recipients
+            $mail->setFrom('respaldos602@gmail.com', 'Administrador VAINCE');
+            $mail->addAddress($user->getUser());     // Add a recipient
+
+            // Attachments
+            $mail->addAttachment('C:/xampp/htdocs/vaince/Catalogos/Catalogo' . $user->getID() . '.pdf');         // Add attachments
+
+            // Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = utf8_decode('Catálogo de objetos obtenido de la Plataforma VainCE.');
+            $mail->Body    = utf8_decode('Se adjunta el catálogo de los objetos requerido desde la plataforma web VainCE.</b>');
+
+            $mail->send();
+            echo 'El mensaje se envio correctamente';
+        } catch (Exception $e) {
+            echo "Hubo un error al enviar el mensaje: {$mail->ErrorInfo}";
+        }
+
+
         header('Location: ../indexLogin.php?op=0&niv=0&cat=1');
     }
 }

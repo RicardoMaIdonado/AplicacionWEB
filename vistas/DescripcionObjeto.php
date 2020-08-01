@@ -64,7 +64,7 @@ foreach ($lista as $row) {
 
         }
 
-        img {
+        #imgen {
             display: block;
             margin-left: auto;
             margin-right: auto;
@@ -101,19 +101,24 @@ foreach ($lista as $row) {
                 </li>
             </ul>
             <div class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-secondary my-2 my-sm-0 justify-content-center" onclick="location='nuevo.php?nueva=3'">
-                    <img src="user.png" style="max-width: 20px; max-height: 20px;">
-                    <div style="color:white;"><?php echo $user->getName(); ?></div>
-                </button>
+                <div id="botonP" class="btn-group" role="group" aria-label="Button group with nested dropdown" style="margin-left: auto;">
+                    <div class="btn-group" role="group">
+                        <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="../Iconos/user.png" style="max-width: 20px; max-height: 20px;">
+                            <?php echo $user->getName(); ?>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="http://localhost/vaince/vistas/nuevo.php?nueva=3">Perfil</a>
+                            <a class="dropdown-item" href="http://localhost/vaince/includes/logout.php">Cerrar Sesión</a>
+
+                        </div>
+                    </div>
+                </div>
+
                 &nbsp
-                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='nuevo.php?nueva=5'">
-                    <img src="shopping-cart.png" style="max-width: 20px; max-height: 20px;">
-                    <div style="color:white;">Carrito</div>
-                </button>
-                &nbsp
-                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='../includes/logout.php'">
-                    <img src="../Iconos/logout.png" style="max-width: 20px; max-height: 20px;">
-                    <div style="color:white;">Cerrar Sesión</div>
+                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='nuevo.php?nueva=5'">
+                    <img src="../Iconos/shopping-cart.png" style="max-width: 20px; max-height: 20px;">
+                    Carrito
                 </button>
 
             </div>
@@ -133,7 +138,7 @@ foreach ($lista as $row) {
                 <h3><?php echo $nombre; ?></h3>
             </div>
             <div class="card-body d-flex justify-content-between">
-                <img src="../Imagenes/<?php echo $imagen; ?>" style="width: 200px; height:170px;">
+                <img id="imgen" src="../Imagenes/<?php echo $imagen; ?>" style="width: 200px; height:170px;">
                 <div class="container">
                     <p><b>Categoria:</b>
                         <?php
@@ -181,7 +186,7 @@ foreach ($lista as $row) {
 
     <!-- CONTENIDO -->
     <div>
-        <div class="card-header">
+        <div class="card-header" >
             <h3>OBJETOS RELACIONADOS</h3>
         </div>
         <br>
@@ -195,8 +200,8 @@ foreach ($lista as $row) {
                 $categ = $row[12];
                 if ($categ == $cate) {
             ?>
-                    <div>
-                        <img src="../Imagenes/<?php echo $im; ?>" title="Click para ver descripción" onclick="caracterizar(<?php echo $row[0]; ?>)" style="width: 200px; height:170px;">
+                    <div style="border-radius: 15px;">
+                        <img id="imgen" src="../Imagenes/<?php echo $im; ?>" title="Click para ver descripción" onclick="caracterizar(<?php echo $row[0]; ?>)" style="width: 200px; height:170px;">
                         <p class="img-footer">
                         </p>
                         <p class="img-footer">
