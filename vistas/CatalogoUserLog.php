@@ -22,6 +22,7 @@ $lista = $_SESSION['lista'];
             }
 
         }
+
     </style>
 </head>
 
@@ -63,6 +64,11 @@ $lista = $_SESSION['lista'];
                 <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='vistas/nuevo.php?nueva=5'">
                     <img src="../vaince/Iconos/shopping-cart.png" style="max-width: 20px; max-height: 20px;">
                     <div style="color:white;">Carrito</div>
+                </button>
+                &nbsp
+                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='../vaince/includes/logout.php'">
+                    <img src="../vaince/Iconos/logout.png" style="max-width: 20px; max-height: 20px;">
+                    <div style="color:white;">Cerrar Sesión</div>
                 </button>
 
             </div>

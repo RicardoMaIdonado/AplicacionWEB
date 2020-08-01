@@ -104,6 +104,11 @@ $listado = $_SESSION['listado'];
                     <img src="shopping-cart.png" style="max-width: 20px; max-height: 20px;">
                     <div style="color:white;">Carrito</div>
                 </button>
+                &nbsp
+                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='../includes/logout.php'">
+                    <img src="../Iconos/logout.png" style="max-width: 20px; max-height: 20px;">
+                    <div style="color:white;">Cerrar Sesión</div>
+                </button>
 
             </div>
         </div>
@@ -136,9 +141,10 @@ $listado = $_SESSION['listado'];
 
 
         $repetidas = array_unique($listado);
+        
         $cantidades = array();
+        
         $precios = array();
-
 
         sort($listado);
 
@@ -187,6 +193,10 @@ $listado = $_SESSION['listado'];
             $cantidades[] = $cant;
             $precios[] = $pre;
         }
+
+        $_SESSION["objetoscompra"]=$repetidas;
+        $_SESSION["cantidadescompra"]=$cantidades;
+        $_SESSION["precioscompra"]=$precios;
 
         $totalprecio = 0;
         $totalarma = 0;
@@ -240,7 +250,6 @@ $listado = $_SESSION['listado'];
     </div>
     <div class="d-flex justify-content-center">
 
-
         <table>
 
             <thead>
@@ -284,8 +293,6 @@ $listado = $_SESSION['listado'];
                 </tr>
             </tfoot>
         </table>
-
-
 
     </div>
     <br>
@@ -389,6 +396,7 @@ $listado = $_SESSION['listado'];
             <p><b>Perforación de escudo:</b> +<?php echo $totalperesc; ?> %</p>
         <?php
         }
+        $_SESSION["totalprecio"]=$totalprecio;
         ?>
         <br>
         <p></p>
@@ -401,12 +409,12 @@ $listado = $_SESSION['listado'];
             <img src="../Iconos/recycle.png" style="max-width: 20px; max-height: 20px;">
             <div style="color:black;">Vaciar Carrito</div>
         </button>
-        <button class="btn btn-outline-secondary">
+        <button class="btn btn-outline-secondary" onclick="location='nuevo.php?nueva=9'">
             <img src="../Iconos/buy.png" style="max-width: 20px; max-height: 20px;">
             <div style="color:black;">Solicitar</div>
         </button>
     </div>
-
+    <div style="min-height: 10vh;"></div>
     <!-- Footer -->
     <footer class="page-footer font-small mdb-color darken-3 pt-4">
         <div class="colum1">

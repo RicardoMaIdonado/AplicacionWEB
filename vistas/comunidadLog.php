@@ -57,6 +57,11 @@
                     <img src="shopping-cart.png" style="max-width: 20px; max-height: 20px;">
                     <div style="color:white;">Carrito</div>
                 </button>
+                &nbsp
+                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='../includes/logout.php'">
+                    <img src="../Iconos/logout.png" style="max-width: 20px; max-height: 20px;">
+                    <div style="color:white;">Cerrar Sesión</div>
+                </button>
 
             </div>
         </div>

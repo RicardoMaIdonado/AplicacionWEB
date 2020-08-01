@@ -32,7 +32,7 @@ if (isset($_SESSION['user'])) {
         unset($_SESSION['listado']);
         $_SESSION['listado'] = array();
         echo '<script language="javascript">alert("Carrito vacio");</script>';
-        include_once 'carritoPersonal.php';
+        include_once '../vistas/carritoPersonal.php';
     } else if ($_REQUEST['nueva'] == 8) {
         if ($_REQUEST['mensaje']==0) {
             echo '<script type="text/javascript">alert("Nada para actualizar")</script>';
@@ -48,5 +48,46 @@ if (isset($_SESSION['user'])) {
             echo '<script type="text/javascript">alert("Las contraseñas no coinciden")</script>';
         }
         include_once 'home.php';
+    } else if ($_REQUEST['nueva'] == 9) {
+        include '../includes/pedido.php';
+        include '../includes/pedido_objeto.php';
+        $pedido = new Pedido();
+        $pedido->ingreso($user->getID(),$_SESSION["totalprecio"]);
+
+        $objetoscompra = array();
+        $objetoscompra = $_SESSION['objetoscompra'];
+        $cantidadescompra = array();
+        $cantidadescompra = $_SESSION['cantidadescompra'];
+        $precioscompra = array();
+        $precioscompra = $_SESSION['precioscompra'];
+
+        $ult=0;
+        $ultimo = $pedido->getUltimoPedido();
+        foreach ($ultimo as $re) {
+            $ult = $re[0];
+        }
+
+        $idsobjetos = array();
+        $prod = new Producto();
+        
+        foreach ($objetoscompra as $nue) {
+            $te = array();
+            $te = $prod->obtenerObjeto($nue);
+            foreach ($te as $oter) {
+                $idsobjetos[] = $oter[0];
+            }
+            
+        }
+        
+        $pedido_objeto = new Pedido_Objeto();
+        for ($i=0;$i<sizeof($idsobjetos);$i++) {
+            $pedido_objeto->ingreso($ult,$idsobjetos[$i],$cantidadescompra[$i]);
+        }
+
+        unset($_SESSION['listado']);
+        $_SESSION['listado'] = array();
+        //include_once '../vistas/carritoPersonal.php';
+        header('Location: ../indexLogin.php?op=0&niv=0&c=1');
     }
+
 }

@@ -4,6 +4,7 @@ include_once 'ConexionDB.php';
 
 class User extends DB
 {
+    private $id;
     private $nombre;
     private $apellido;
     private $correo;
@@ -27,11 +28,18 @@ class User extends DB
         $query = $this->getConexion()->prepare('SELECT * FROM usuario WHERE correo = :user');
         $query->execute(['user' => $user]);
         foreach ($query as $currentUser) {
+            $this->id = $currentUser['id_usuario'];
             $this->nombre = $currentUser['nombre'];
             $this->apellido = $currentUser['apellido'];;
             $this->correo = $currentUser['correo'];
         }
     }
+
+    public function getID()
+    {
+        return $this->id;
+    }
+
     public function getUser()
     {
         return $this->correo;

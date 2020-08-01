@@ -110,6 +110,11 @@ foreach ($lista as $row) {
                     <img src="shopping-cart.png" style="max-width: 20px; max-height: 20px;">
                     <div style="color:white;">Carrito</div>
                 </button>
+                &nbsp
+                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='../includes/logout.php'">
+                    <img src="../Iconos/logout.png" style="max-width: 20px; max-height: 20px;">
+                    <div style="color:white;">Cerrar Sesión</div>
+                </button>
 
             </div>
         </div>
@@ -119,7 +124,7 @@ foreach ($lista as $row) {
     <!-- CONTENIDO -->
     <p></p>
     <div class="d-flex justify-content-center">
-        <h1>DESCRIPCIÓN DEL OBJETO</h1>
+        <h1 align="center">DESCRIPCIÓN DEL OBJETO</h1>
     </div>
     <p></p>
     <div class="container d-flex justify-content-center">

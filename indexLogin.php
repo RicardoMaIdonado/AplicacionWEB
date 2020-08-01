@@ -15,6 +15,9 @@ if (isset($_SESSION['user'])) {
         $_SESSION['op'] = $_REQUEST['op'];
         $_SESSION['niv'] = $_REQUEST['niv'];
     }
+    if (isset($_REQUEST['c'])) {
+        echo '<script type="text/javascript">alert("Compra realizada exitosamente")</script>';
+    }
     include_once 'controlador/IndexLog.php';
 } else if (isset($_POST['mail']) && isset($_POST['password'])) {
     //echo "validacion de login";

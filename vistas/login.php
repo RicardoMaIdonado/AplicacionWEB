@@ -89,7 +89,7 @@
         <p> <i> Aun no te has registrado? </i> Haslo <a href="indexSignIn.php"> aquí</a></p>
     </div>
 
-
+    <div style="min-height: 1vh;"></div>
     <!-- Footer -->
     <footer class="page-footer font-small mdb-color darken-3 pt-4">
         <div class="colum1">

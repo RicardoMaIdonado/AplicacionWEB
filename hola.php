@@ -4,3 +4,4 @@
     echo md5($pass).'<br/>';
     $datos = new DB();
     $datos->getConexion();
+    

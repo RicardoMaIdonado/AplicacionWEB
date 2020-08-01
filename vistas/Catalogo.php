@@ -52,17 +52,7 @@ $lista = $_SESSION['lista'];
                     </a>
                 </li>
             </ul>
-            <ul class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-secondary my-2 my-sm-0 justify-content-center">
-                    <img src="../Iconos/user.png" style="max-width: 20px; max-height: 20px; margin-right: 0;" title="Disponible solo para usuarios registrados">
-                    <div style="color:white;" title="Disponible solo para usuarios registrados">Perfil</div>
-                </button>
-                &nbsp
-                <button class="btn btn-outline-secondary my-2 my-sm-0">
-                    <img src="../Iconos/shopping-cart.png" style="max-width: 20px; max-height: 20px; margin-right: 0;" title="Disponible solo para usuarios registrados">
-                    <div style="color:white;" title="Disponible solo para usuarios registrados">Carrito</div>
-                </button>
-            </ul>
+            
         </div>
     </nav>
     <!-- NAVBAR -->

@@ -12,7 +12,9 @@
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand"><div style = "font-family:monaco;font-size:larger">VAINCE</div></a>
+        <a class="navbar-brand">
+            <div style="font-family:monaco;font-size:larger">VAINCE</div>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -20,13 +22,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/indexLogin.php?op=0&niv=0"><div style="color:white;">Objetos</div></a>
+                    <a class="nav-link" href="http://localhost/vaince/indexLogin.php?op=0&niv=0">
+                        <div style="color:white;">Objetos</div>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=1"><div style="color:white;">Noticias</div></a>
+                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=1">
+                        <div style="color:white;">Noticias</div>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=0"><div style="color:white;">Comunidad</div></a>
+                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=0">
+                        <div style="color:white;">Comunidad</div>
+                    </a>
                 </li>
             </ul>
             <div class="form-inline my-2 my-lg-0">
@@ -39,29 +47,28 @@
                     <img src="shopping-cart.png" style="max-width: 20px; max-height: 20px;">
                     <div style="color:white;">Carrito</div>
                 </button>
+                &nbsp
+                <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='../includes/logout.php'">
+                    <img src="../Iconos/logout.png" style="max-width: 20px; max-height: 20px;">
+                    <div style="color:white;">Cerrar Sesión</div>
+                </button>
 
             </div>
         </div>
     </nav>
     <!-- NAVBAR -->
     <p></p>
-    <div>
-        <ul>
-            <li>Home</li>
-            <li class="cerrar-sesion">
-                <a href="../includes/logout.php">Cerrar sesion</a>
-            </li>
-        </ul>
-    </div>
 
     <section>
-        <h1 >Bienvenido <?php echo $user->getName(); echo " "; echo $user->getApellido();?></h1>
+        <h1>Bienvenido <?php echo $user->getName();
+                        echo " ";
+                        echo $user->getApellido(); ?></h1>
     </section>
     <!-- CONTENIDDO -->
     <div class="d-flex justify-content-center">
         <h1 align="center">Perfil de Usuario VainCE</h1>
     </div>
-
+    <br>
     <div class="container d-flex justify-content-center">
         <div class="card text-white bg-secondary mb-3" style="max-width: 23rem;">
             <div class="card-header">
@@ -145,7 +152,7 @@
             </form>
         </div>
     </div>
-    
+
     <!-- CONTENIDDO -->
     <!-- Footer -->
     <footer class="page-footer font-small mdb-color darken-3 pt-4">
