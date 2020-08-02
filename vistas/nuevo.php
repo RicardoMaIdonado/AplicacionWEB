@@ -37,6 +37,11 @@ if (isset($_SESSION['user'])) {
         $_SESSION['codigo'] = $_REQUEST['cod'];
         include_once 'Detalle.php';
     } else if ($_REQUEST['nueva'] == 5) {
+        if (isset($_REQUEST['corr'])) {
+            if ($_REQUEST['corr']==1) {
+                echo '<script language="javascript">alert("El informe del carrito ha sido enviado al correo!");</script>';
+            }
+        }
         include_once '../vistas/carritoPersonal.php';
     } else if ($_REQUEST['nueva'] == 6) {
         include_once 'agregado.php';
@@ -307,5 +312,11 @@ if (isset($_SESSION['user'])) {
 
 
         header('Location: ../indexLogin.php?op=0&niv=0&cat=1');
-    }
+    } else if ($_REQUEST['nueva'] == 12) {
+
+        header('Location: ../indexLogin.php?op=0&niv=0');
+    } else if ($_REQUEST['nueva'] == 13) {
+
+        header('Location: ../indexLogin.php?op=0&niv=0');
+    } 
 }

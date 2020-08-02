@@ -41,7 +41,8 @@ if (isset($_SESSION['user'])) {
         $errorLogin = "Nombre de usuario o password incorrectos";
         include_once 'vistas/login.php';
     }
-} else {
+}
+else {
     //echo "Login";
     include_once 'vistas/login.php';
 }

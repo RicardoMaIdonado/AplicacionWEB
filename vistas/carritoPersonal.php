@@ -18,6 +18,12 @@ $listado = $_SESSION['listado'];
             height: 300px;
         }
 
+        #imagen {
+            max-width: 60px;
+            max-height: 60px;
+            margin-right: 10px;
+        }
+
         table {
             font-family: "Helvetica Neue", Helvetica, sans-serif
         }
@@ -162,8 +168,8 @@ $listado = $_SESSION['listado'];
                 $objeto->id_objeto = $rows[0];
                 $objeto->nombre = $rows[1];
                 $objeto->precio = $rows[2];
-                $objeto->dano_arma = $rows[3];
-                $objeto->dano_cristal = $rows[4];
+                $objeto->dano_cristal = $rows[3];
+                $objeto->dano_arma = $rows[4];
                 $objeto->nivel = $rows[5];
                 $objeto->escudo = $rows[6];
                 $objeto->salud = $rows[7];
@@ -308,19 +314,19 @@ $listado = $_SESSION['listado'];
         <?php
         $estadisticas = array();
 
-        if ($totalarma != 0) {
+        if ($totalcristal != 0) {
         ?>
-            <p><b>Daño de cristal:</b> +<?php echo $totalarma; ?> de potencia</p>
+            <p><b>Daño de cristal:</b> +<?php echo $totalcristal; ?> de potencia</p>
         <?php
-            $estadisticas[] = "Daño de cristal: " . $totalarma;
+            $estadisticas[] = "Daño de cristal: " . $totalcristal;
         }
         ?>
         <?php
-        if ($totalcristal != 0) {
+        if ($totalarma != 0) {
         ?>
-            <p><b>Daño de arma:</b> +<?php echo $totalcristal; ?> de potencia</p>
+            <p><b>Daño de arma:</b> +<?php echo $totalarma; ?> de potencia</p>
         <?php
-            $estadisticas[] = "Daño de arma: " . $totalcristal;
+            $estadisticas[] = "Daño de arma: " . $totalarma;
         }
         ?>
         <?php
@@ -437,6 +443,233 @@ $listado = $_SESSION['listado'];
             <div style="color:black;">Solicitar</div>
         </button>
     </div>
+
+    <br>
+    <?php
+    //include '../Modelo/Objeto.php';
+    $primeralista = array();
+
+    $primeralista = $producto->pedidousuario($user->getID());
+
+    foreach ($primeralista as $pre) {
+        $objetos = array();
+        $lista = array();
+        $lista = $producto->carrito($user->getID(), $pre[0]);
+        foreach ($lista as $tre) {
+            for ($i = 0; $i < $tre[4]; $i++) {
+                $objeto = new Objeto();
+                $liston = array();
+                $liston = $producto->objetoconID($tre[3]);
+                foreach ($liston as $row) {
+                    $objeto->id_objeto = $row[0];
+                    $objeto->nombre = $row[1];
+                    $objeto->precio = $row[2];
+                    $objeto->dano_cristal = $row[3];
+                    $objeto->dano_arma = $row[4];
+                    $objeto->nivel = $row[5];
+                    $objeto->escudo = $row[6];
+                    $objeto->salud = $row[7];
+                    $objeto->velocidad_ataque = $row[8];
+                    $objeto->dano_critico = $row[9];
+                    $objeto->prob_critico = $row[10];
+                    $objeto->vampirismo = $row[11];
+                    $objeto->categoria_objeto = $row[12];
+                    $objeto->perforacion_armadura = $row[13];
+                    $objeto->reduccion_reposo = $row[14];
+                    $objeto->energia_recarga = $row[15];
+                    $objeto->energia_maxima = $row[16];
+                    $objeto->imagen = $row[17];
+                    $objeto->armadura = $row[18];
+                    $objeto->perforacion_escudo = $row[19];
+                }
+                $objetos[] = $objeto;
+            }
+        }
+        $totalprecio = 0;
+        $totalarma = 0;
+        $totalcristal = 0;
+        $totalescudo = 0;
+        $totalsalud = 0;
+        $totalvelataque = 0;
+        $totaldcri = 0;
+        $totalpcri = 0;
+        $totalvamp = 0;
+        $totalperarm = 0;
+        $totalredrep = 0;
+        $totalenerrec = 0;
+        $totalenermax = 0;
+        $totalarm = 0;
+        $totalperesc = 0;
+        $raw = new Objeto();
+
+        foreach ($objetos as $raw) {
+
+            $totalprecio = $totalprecio + $raw->precio;
+            $totalarma = $totalarma + $raw->dano_arma;
+            $totalcristal = $totalcristal + $raw->dano_cristal;
+            $totalescudo = $totalescudo + $raw->escudo;
+            $totalsalud = $totalsalud + $raw->salud;
+            $totalvelataque = $totalvelataque + $raw->velocidad_ataque;
+            $totaldcri = $totaldcri + $raw->dano_critico;
+            $totalpcri = $totalpcri + $raw->prob_critico;
+
+            if ($raw->vampirismo > $totalvamp) {
+                $totalvamp = $raw->vampirismo;
+            }
+
+            if ($raw->perforacion_armadura > $totalperarm) {
+                $totalperarm = $raw->perforacion_armadura;
+            }
+
+            $totalredrep = $totalredrep + $raw->reduccion_reposo;
+            $totalenerrec = $totalenerrec + $raw->energia_recarga;
+            $totalenermax = $totalenermax + $raw->energia_maxima;
+            $totalarm = $totalarm + $raw->armadura;
+
+            if ($raw->perforacion_escudo > $totalperesc) {
+                $totalperesc = $raw->perforacion_escudo;
+            }
+        }
+
+        $estadisticas = array();
+
+        if ($totalcristal != 0) {
+            $estadisticas[] = "Daño de cristal: " . $totalcristal;
+        }
+
+        if ($totalarma != 0) {
+            $estadisticas[] = "Daño de arma: " . $totalarma;
+        }
+
+        if ($totalescudo != 0) {
+            $estadisticas[] = "Escudo: " . $totalescudo;
+        }
+
+        if ($totalsalud != 0) {
+            $estadisticas[] = "Salud: " . $totalsalud;
+        }
+
+        if ($totalarm != 0) {
+            $estadisticas[] = "Armadura: " . $totalarm;
+        }
+
+        if ($totalvelataque != 0) {
+            $estadisticas[] = "Velocidad de ataque: " . $totalvelataque;
+        }
+
+        if ($totaldcri != 0) {
+            $estadisticas[] = "Daño crítico: " . $totaldcri;
+        }
+
+        if ($totalpcri != 0) {
+            $estadisticas[] = "Posibilidad de crítico: " . $totalpcri;
+        }
+
+        if ($totalvamp != 0) {
+            $estadisticas[] = "Vampirismo: " . $totalvamp;
+        }
+
+        if ($totalperarm != 0) {
+            $estadisticas[] = "Perforación de armadura: " . $totalperarm;
+        }
+
+        if ($totalredrep != 0) {
+            $estadisticas[] = "Reducción de reposo: " . $totalredrep;
+        }
+
+        if ($totalenerrec != 0) {
+            $estadisticas[] = "Recarga de energía: " . $totalenerrec;
+        }
+
+        if ($totalenermax != 0) {
+            $estadisticas[] = "Energía máxima: " . $totalenermax;
+        }
+
+        if ($totalperesc != 0) {
+            $estadisticas[] = "Perforación de escudo: " . $totalperesc;
+        }
+    ?>
+
+        <!-- CONTENIDO CARRITOS ANTERIORES-->
+        <div class="mx-auto" style="max-width: 700px;">
+            <form action="formCarrito.php" method="post">
+                <div class="card mb-3  text-white bg-secondary">
+                    <div class="card-title" style="margin-left: 15px;">
+                        <h5>Fecha: <?php echo $pre[2] ?></h5>
+                        <div class="input-group input-group-sm mb-3 bg-secondary text-white">
+                            <div class="input-group-prepend bg-secondary">
+                                <span class="input-group-text bg-secondary text-white border-0" id="inputGroup-sizing-sm">Pedido #</span>
+                            </div>
+                            <input class="form-control bg-secondary text-white border-0" name="idpedido" type="text" value=<?php echo $pre[0] ?> readonly />
+                        </div>
+                    </div>
+                    <div class="d-flex row no-gutters" style="margin-left: 15px;">
+
+                        <div class="d-flex align-content-start flex-wrap col-md-4">
+
+                            <?php
+                            $re = new Objeto();
+                            $contador = 1;
+                            echo "<br>";
+
+                            foreach ($objetos as $re) {
+                            ?>
+                                <!--Aqui comineza el bucle de recuperacion para fotos-->
+                                <img id="imagen" src="../Imagenes/<?php echo $re->imagen ?>" class="card-img" alt="" title="<?php echo $re->nombre ?>">
+
+                                <?php
+                                if ($contador = 3) {
+                                    echo "<br>";
+                                }
+                                $contador = $contador + 1;
+                                ?>
+
+                            <?php
+                            }
+                            ?>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <!--Aqui comineza el bucle de recuperacion de estadisticas-->
+                                <?php
+                                foreach ($estadisticas as $rere) {
+                                ?>
+                                    <p class="card-text"><?php echo $rere; ?></p>
+                                <?php
+
+                                }
+                                ?>
+
+                            </div>
+                            <div class="card-footer bg-transparent d-flex justify-content-between">
+                                <!--Recuperacion del costo total-->
+                                <p>ORO TOTAL: <?php echo $pre[4] ?> </p>
+                                <!--Boton para enviar al correo del usuario-->
+                                <div id="boton" class="btn-group" role="group" aria-label="Button group with nested dropdown" style="margin-left: auto;">
+                                    <div class="btn-group" role="group" style="border: black;">
+                                        <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <img src="../Iconos/pdf.png" style="max-width: 20px; max-height: 20px;">
+                                            Solicitar
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                            <input type="submit" name="boton1" class="dropdown-item" value="Visualizar PDF">
+                                            <input type="submit" name="boton2" class="dropdown-item" value="Enviar por correo">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    <?php
+    }
+    ?>
+    <!-- CONTENIDO -->
+
     <div style="min-height: 10vh;"></div>
     <!-- Footer -->
     <footer class="page-footer font-small mdb-color darken-3 pt-4">

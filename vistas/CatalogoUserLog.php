@@ -121,7 +121,7 @@ $lista = $_SESSION['lista'];
                     </button>
                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                         <a class="dropdown-item" href="http://localhost/vaince/vistas/nuevo.php?nueva=10">Visualizar PDF</a>
-                        <a class="dropdown-item" href="http://localhost/vaince/vistas/nuevo.php?nueva=11">Envíar por correo</a>
+                        <a class="dropdown-item" href="http://localhost/vaince/vistas/nuevo.php?nueva=11">Enviar por correo</a>
 
                     </div>
                 </div>

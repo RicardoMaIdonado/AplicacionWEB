@@ -24,6 +24,7 @@ foreach ($lista as $row) {
     $energia_maxima = $row[16];
     $imagen = $row[17];
     $armadura = $row[18];
+    $perforacion_escudo = $row[19];
 }
 
 ?>
@@ -152,6 +153,7 @@ foreach ($lista as $row) {
                     <p><b>Reducción de reposo:</b> +<?php echo $reduccion_reposo; ?> %</p>
                     <p><b>Recarga de energía:</b> +<?php echo $energia_recarga; ?></p>
                     <p><b>Energía máxima:</b> +<?php echo $energia_maxima; ?> %</p>
+                    <p><b>Perforacion de escudo:</b> +<?php echo $perforacion_escudo; ?> %</p>
                     <p></p>
                 </div>
             </div>

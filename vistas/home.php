@@ -100,7 +100,7 @@
                     <div class="container">
                         <h5 class="card-title">Apellido:</h5>
                         <div class="input">
-                            <input name="userapell_reg" type="text" placeholder=<?php echo $user->getApellido(); ?> />
+                            <input name="userapell_reg" type="text" placeholder=<?php echo $user->getApellido(); ?>/>
                         </div>
                         &nbsp
                     </div>

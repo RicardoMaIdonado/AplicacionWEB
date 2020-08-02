@@ -37,6 +37,7 @@ foreach ($lista as $row) {
     $objeto->energia_maxima = $row[16];
     $objeto->imagen = $row[17];
     $objeto->armadura = $row[18];
+    $objeto->perforacion_escudo = $row[19];
 }
 $_SESSION['objeto'] = $objeto;
 $_SESSION['pro'] = $objeto->nombre;
