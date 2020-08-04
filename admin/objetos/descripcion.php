@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <?php
-include '../includes/productos.php';
+include_once '../includes/admin.php';
+include_once '../includes/admin_session.php';
+include_once '../includes/ConexionDB.php';
+include 'manejoobjetos.php';
+$adminsession = new AdminSession();
+$admin = new Admin();
+$admin->setAdmin($adminsession->getCurrentAdmin());
 $cod = $_REQUEST['cod'];
 
-$obj = new Producto();
-$lista = $obj->ListarProductosID($cod);
+$obj = new ManejoObjetos();
+$lista = $obj->ListarObjetosID($cod);
 $todos = $obj->ListarProductosExceptoUno($cod);
 foreach ($lista as $row) {
     $nombre = $row[1];
@@ -31,11 +37,11 @@ foreach ($lista as $row) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="../Pie.css">
-    <title>VAINCE</title>
+    <link rel="stylesheet" href="/vaince/Pie.css">
+    <title>Objetos VainCE</title>
     <style>
         .horizontal-scroll-contenedor {
 
@@ -76,25 +82,54 @@ foreach ($lista as $row) {
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand"><div style = "font-family:monaco;font-size:larger">VAINCE</div></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="http://localhost/vaince/admin/indexLogin.php">
+            <div style="font-family:monaco;font-size:larger">VAINCE</div>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/controlador/Index.php"><div style="color:white;">Objetos</div></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/noticias.php"><div style="color:white;">Noticias</div></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/comunidad.php"><div style="color:white;">Comunidad</div></a>
-                </li>
+            <div class="btn-group" role="group">
+                    <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="/vaince/iconos/sword_white.png" style="max-width: 20px; max-height: 20px;">
+                        Objetos
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=0">Agregar</a>
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=1">Gestionar</a>
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=2">Solicitar Catálogo</a>
+                    </div>
+                </div>
+                &nbsp
+                <div class="btn-group" role="group">
+                    <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="/vaince/iconos/newspaper_white.png" style="max-width: 20px; max-height: 20px;">
+                        Noticias
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=3">Nueva</a>
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=4">Gestionar</a>
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=5">Vista previa</a>
+                    </div>
+                </div>
             </ul>
-            
+            <div class="form-inline my-2 my-lg-0">
+                <div id="botonP" class="btn-group" role="group" aria-label="Button group with nested dropdown" style="margin-left: auto;">
+                    <div class="btn-group" role="group">
+                        <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="/vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
+                            <?php echo $admin->getName(); ?>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+
+                            <a class="dropdown-item" href="http://localhost/vaince/admin/logout.php">Cerrar Sesión</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
     <!-- NAVBAR -->
@@ -111,7 +146,7 @@ foreach ($lista as $row) {
                 <h3><?php echo $nombre; ?></h3>
             </div>
             <div class="card-body d-flex justify-content-between">
-                <img src="../Imagenes/<?php echo $imagen; ?>" style="width: 200px; height:170px;">
+                <img src="/vaince/Imagenes/<?php echo $imagen; ?>" style="width: 200px; height:170px;">
                 <div class="container">
                     <p><b>Categoria:</b>
                         <?php
@@ -165,7 +200,7 @@ foreach ($lista as $row) {
                 if ($categ == $cate) {
             ?>
                     <div>
-                        <img src="../Imagenes/<?php echo $im; ?>" title="Click para ver descripción" onclick="caracterizar(<?php echo $row[0]; ?>)" style="width: 200px; height:170px;">
+                        <img src="/vaince/Imagenes/<?php echo $im; ?>" title="Click para ver descripción" onclick="caracterizar(<?php echo $row[0]; ?>)" style="width: 200px; height:170px;">
                         <p class="img-footer">
                         </p>
                         <p class="img-footer">
@@ -190,7 +225,7 @@ foreach ($lista as $row) {
 
     <script>
         function caracterizar(co) {
-            location.href = "DescripcionObjetoComun.php?cod=" + co;
+            location.href = "descripcion.php?cod=" + co;
         }
     </script>
     <!-- Footer -->
@@ -204,19 +239,20 @@ foreach ($lista as $row) {
         <div class="colum2">
             <div class="information">
                 <a href="https://www.facebook.com/vainglorygame" target="_blank">
-                    <img src="facebook.png" alt=""></a>
+                    <img src="/vaince/Iconos/facebook.png" alt=""></a>
             </div>
             <div class="information">
                 <a href="https://twitter.com/vainglory?lang=es" target="_blank">
-                    <img src="twitter.png" alt=""></a>
+                    <img src="/vaince/Iconos/twitter.png" alt=""></a>
             </div>
             <div class="information">
                 <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ" target="_blank">
-                    <img src="youtube.png" alt=""></a>
+                    <img src="/vaince/Iconos/youtube.png" alt=""></a>
             </div>
         </div>
     </footer>
     <!-- Footer -->
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <?php
-session_start();
-$lista = $_SESSION['lista'];
+include 'manejoobjetos.php';
+$lista = array();
+$lista = (new ManejoObjetos())->ListarObjetos();
 
 ?>
 <html lang="en">
@@ -10,8 +11,8 @@ $lista = $_SESSION['lista'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="../Pie.css">
-    <title>VAINCE</title>
+    <link rel="stylesheet" href="/vaince/Pie.css">
+    <title>Catalogo de objetos VainCE</title>
     <style>
         @media(max-width: 768px) {
             #catalogo {
@@ -27,7 +28,7 @@ $lista = $_SESSION['lista'];
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="http://localhost/vaince/inicio.html">
+        <a class="navbar-brand" href="http://localhost/vaince/admin/indexLogin.php">
             <div style="font-family:monaco;font-size:larger">VAINCE</div>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,23 +37,45 @@ $lista = $_SESSION['lista'];
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/controlador/Index.php">
-                        <div style="color:white;">Objetos</div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="noticias.php">
-                        <div style="color:white;">Noticias</div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="comunidad.php">
-                        <div style="color:white;">Comunidad</div>
-                    </a>
-                </li>
+            <div class="btn-group" role="group">
+                    <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../iconos/sword_white.png" style="max-width: 20px; max-height: 20px;">
+                        Objetos
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=0">Agregar</a>
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=1">Gestionar</a>
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=2">Solicitar Catálogo</a>
+                    </div>
+                </div>
+                &nbsp
+                <div class="btn-group" role="group">
+                    <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../iconos/newspaper_white.png" style="max-width: 20px; max-height: 20px;">
+                        Noticias
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=3">Nueva</a>
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=4">Gestionar</a>
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=5">Vista previa</a>
+                    </div>
+                </div>
             </ul>
-            
+            <div class="form-inline my-2 my-lg-0">
+                <div id="botonP" class="btn-group" role="group" aria-label="Button group with nested dropdown" style="margin-left: auto;">
+                    <div class="btn-group" role="group">
+                        <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="/vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
+                            <?php echo $admin->getName(); ?>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+
+                            <a class="dropdown-item" href="http://localhost/vaince/admin/logout.php">Cerrar Sesión</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
     <!-- NAVBAR -->
@@ -63,27 +86,9 @@ $lista = $_SESSION['lista'];
     <p></p>
     <div class="container">
         <div class="d-flex flex-wrap justify-content-start p-2">
-
-            <select id="producto" name="producto" onchange="ShowSelected();">
-                <option value="0">Categoria</option>
-                <option value="1">Arma</option>
-                <option value="2">Cristal</option>
-                <option value="3">Defensa</option>
-                <option value="4">Utilidad</option>
-                <option value="5">Consumible</option>
-            </select>
-            &nbsp &nbsp
-            <select id="nivel" name="nivel" onchange="ShowSelected();">
-                <option value="0">Nivel</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-            &nbsp &nbsp
-            <input type="button" value="Filtrar" class="btn btn-dark" onclick="filtrar()" />
-
-            <input type="button" value="Solicitar Catalogo" id="catalogo" class="btn btn-dark" style="margin-left: auto;" onclick="location.href='./carritoPersonal.php'" title="Solicitud solo disponible para usuarios registrados" disabled />
-
+            
+            <input type="button" value="Descargar Catalogo" id="catalogo" class="btn btn-dark" style="margin-left: auto;" onclick="location.href='./downloadobjetos.php'" />
+            <img src="/vaince/Iconos/pdf.png" alt="" width="35" height="35">
         </div>
 
         <br>
@@ -92,7 +97,7 @@ $lista = $_SESSION['lista'];
                 <?php
 
                 echo sizeof($lista);
-                echo ' objetos encontrados en la búsqueda.';
+                echo ' objetos en la base de datos.';
                 ?>
             </p>
         </div>
@@ -106,13 +111,9 @@ $lista = $_SESSION['lista'];
                 foreach ($lista as $reg) {
                 ?>
                     <div class="card text-white bg-dark border-dark mb-3" style="width: 16rem;">
-                        <div class="card-footer" align="right">
-                            <button class="btn btn-outline-secondary my-2 my-sm-0" type="button" class="btn btn-outline-light" onclick="enviar(<?php echo $reg[0]; ?>)" disabled>
-                                <img src="../Iconos/shopping-cart.png" style="max-width: 20px; max-height: 20px;" title="Botón solo disponible para usuarios registrados">
-                            </button>
-                        </div>
+
                         <div class="card-header">
-                            <img src="../Imagenes/<?php echo $reg[17]; ?>" class="card-img-top" alt="Card image cap" title="Click para ver descripción" onclick="caracterizar(<?php echo $reg[0]; ?>)" width="55px" height="205px">
+                            <img src="/vaince/Imagenes/<?php echo $reg[17]; ?>" class="card-img-top" alt="Card image cap" title="Click para ver descripción" onclick="caracterizar(<?php echo $reg[0]; ?>)" width="55px" height="205px">
                         </div>
 
                         <div class="card-body bg-dark">
@@ -164,26 +165,12 @@ $lista = $_SESSION['lista'];
     </div>
 
     <script>
-        function enviar(c) {
-
-            location.href = "Detalle.php?cod=" + c;
-        }
-    </script>
-
-    <script>
         function caracterizar(co) {
-            location.href = "DescripcionObjetoComun.php?cod=" + co;
+            location.href = "objetos/descripcion.php?cod=" + co;
         }
     </script>
 
-    <script>
-        function filtrar() {
-            var combo = document.getElementById("producto").value;
-            var combo2 = document.getElementById("nivel").value;
-            location.href = "../controlador/Tienda.php?op=" + combo + "&niv=" + combo2;
-        }
-    </script>
-
+    <div style="min-height: 4vh;"></div>
     <!-- Footer -->
     <footer class="page-footer font-small mdb-color darken-3 pt-4">
         <div class="colum1">
@@ -195,15 +182,15 @@ $lista = $_SESSION['lista'];
         <div class="colum2">
             <div class="information">
                 <a href="https://www.facebook.com/vainglorygame" target="_blank">
-                    <img src="../Iconos/facebook.png" alt=""></a>
+                    <img src="/vaince/Iconos/facebook.png" alt=""></a>
             </div>
             <div class="information">
-                <a href="https://twitter.com/vainglory?lang=es" target="_blank"> 
-                    <img src="../Iconos/twitter.png" alt=""></a>
+                <a href="https://twitter.com/vainglory?lang=es" target="_blank">
+                    <img src="/vaince/Iconos/twitter.png" alt=""></a>
             </div>
             <div class="information">
                 <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ" target="_blank">
-                    <img src="../Iconos/youtube.png" alt=""></a>
+                    <img src="/vaince/Iconos/youtube.png" alt=""></a>
             </div>
         </div>
     </footer>
@@ -214,6 +201,7 @@ $lista = $_SESSION['lista'];
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

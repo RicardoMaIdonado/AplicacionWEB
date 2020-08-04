@@ -1,18 +1,15 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="../Pie.css">
-    <title>VAINCE</title>
-    <meta charset="UTF-8">
-    <title>Vainglory Community Edition</title>
+    <link rel="stylesheet" href="/vaince/Pie.css">
+    <title>Noticias VainCE</title>
     <style>
-        img {
-            width: 700px;
-            height: 500px;
+        #imagen {
+            max-width: 700px;
             margin-right: 20px;
         }
     </style>
@@ -21,7 +18,7 @@
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand">
+        <a class="navbar-brand" href="http://localhost/vaince/admin/indexLogin.php">
             <div style="font-family:monaco;font-size:larger">VAINCE</div>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,42 +27,44 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/indexLogin.php?op=0&niv=0">
-                        <div style="color:white;">Objetos</div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=1">
-                        <div style="color:white;">Noticias</div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=0">
-                        <div style="color:white;">Comunidad</div>
-                    </a>
-                </li>
+            <div class="btn-group" role="group">
+                    <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../iconos/sword_white.png" style="max-width: 20px; max-height: 20px;">
+                        Objetos
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=0">Agregar</a>
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=1">Gestionar</a>
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=2">Solicitar Catálogo</a>
+                    </div>
+                </div>
+                &nbsp
+                <div class="btn-group" role="group">
+                    <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../iconos/newspaper_white.png" style="max-width: 20px; max-height: 20px;">
+                        Noticias
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=3">Nueva</a>
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=4">Gestionar</a>
+                        <a class="dropdown-item" href="http://localhost/vaince/admin/control.php?nueva=5">Vista previa</a>
+                    </div>
+                </div>
             </ul>
             <div class="form-inline my-2 my-lg-0">
                 <div id="botonP" class="btn-group" role="group" aria-label="Button group with nested dropdown" style="margin-left: auto;">
                     <div class="btn-group" role="group">
                         <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="../Iconos/user.png" style="max-width: 20px; max-height: 20px;margin-right: 0px;">
-                            <?php echo $user->getName(); ?>
+                            <img src="/vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
+                            <?php echo $admin->getName(); ?>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item" href="http://localhost/vaince/vistas/nuevo.php?nueva=3">Perfil</a>
-                            <a class="dropdown-item" href="http://localhost/vaince/includes/logout.php">Cerrar Sesión</a>
+
+                            <a class="dropdown-item" href="http://localhost/vaince/admin/logout.php">Cerrar Sesión</a>
 
                         </div>
                     </div>
                 </div>
-
-                &nbsp
-                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='nuevo.php?nueva=5'">
-                    <img src="../Iconos/shopping-cart.png" style="max-width: 20px; max-height: 20px;margin-right: 0px;">
-                    Carrito
-                </button>
             </div>
         </div>
     </nav>
@@ -76,8 +75,9 @@
         <h1>Noticias VainCE</h1>
     </div>
     <p></p>
+
     <?php
-    include '../admin/noticias/manejonoticias.php';
+    include 'manejonoticias.php';
     $noticias = array();
     $noticias = (new ManejoNoticias())->ListarNoticias();
     foreach ($noticias as $raw) {
@@ -85,11 +85,11 @@
         <div class="container d-flex justify-content-center">
             <div class="card text-white bg-secondary mb-3" style="max-width: 90%;">
                 <div class="card-header">
-                    <h3><?php echo $raw[1] . ' [' . $raw[5] .']'?></h3>
+                    <h3><?php echo $raw[1] . ' [' . $raw[5] . ']' ?></h3>
                 </div>
                 <div class="card-body">
                     <p style="text-align: justify;">
-                        <img src="../admin/uploads/<?php echo $raw[4] ?>" class="img-fluid" alt="Vainglory Community Edition" align="left" title="Etiqueta publicitaria de Vainglory CE.">
+                        <img id="imagen" src="/vaince/admin/uploads/<?php echo $raw[4] ?>" class="img-fluid" alt="Vainglory Community Edition" align="left" title="Etiqueta publicitaria de Vainglory CE.">
                         <?php
                         echo $raw[3];
                         ?>
@@ -105,8 +105,10 @@
     <?php
     }
     ?>
+
     <!-- CONTENIDO -->
 
+    <div style="min-height: 4vh;"></div>
     <!-- Footer -->
     <footer class="page-footer font-small mdb-color darken-3 pt-4">
         <div class="colum1">
@@ -118,15 +120,15 @@
         <div class="colum2">
             <div class="information">
                 <a href="https://www.facebook.com/vainglorygame" target="_blank">
-                    <img src="facebook.png" alt=""></a>
+                    <img src="/vaince/Iconos/facebook.png" alt=""></a>
             </div>
             <div class="information">
                 <a href="https://twitter.com/vainglory?lang=es" target="_blank">
-                    <img src="twitter.png" alt=""></a>
+                    <img src="/vaince/Iconos/twitter.png" alt=""></a>
             </div>
             <div class="information">
                 <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ" target="_blank">
-                    <img src="youtube.png" alt=""></a>
+                    <img src="/vaince/Iconos/youtube.png" alt=""></a>
             </div>
         </div>
     </footer>

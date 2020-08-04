@@ -1,5 +1,5 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -21,7 +21,7 @@
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand">
+        <a class="navbar-brand" href="http://localhost/vaince/inicio.html">
             <div style="font-family:monaco;font-size:larger">VAINCE</div>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,42 +31,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/indexLogin.php?op=0&niv=0">
+                    <a class="nav-link" href="http://localhost/vaince/controlador/Index.php">
                         <div style="color:white;">Objetos</div>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=1">
+                    <a class="nav-link" href="noticias.php">
                         <div style="color:white;">Noticias</div>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=0">
+                    <a class="nav-link" href="comunidad.php">
                         <div style="color:white;">Comunidad</div>
                     </a>
                 </li>
             </ul>
-            <div class="form-inline my-2 my-lg-0">
-                <div id="botonP" class="btn-group" role="group" aria-label="Button group with nested dropdown" style="margin-left: auto;">
-                    <div class="btn-group" role="group">
-                        <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="../Iconos/user.png" style="max-width: 20px; max-height: 20px;margin-right: 0px;">
-                            <?php echo $user->getName(); ?>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item" href="http://localhost/vaince/vistas/nuevo.php?nueva=3">Perfil</a>
-                            <a class="dropdown-item" href="http://localhost/vaince/includes/logout.php">Cerrar Sesión</a>
 
-                        </div>
-                    </div>
-                </div>
-
-                &nbsp
-                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" onclick="location='nuevo.php?nueva=5'">
-                    <img src="../Iconos/shopping-cart.png" style="max-width: 20px; max-height: 20px;margin-right: 0px;">
-                    Carrito
-                </button>
-            </div>
         </div>
     </nav>
     <!-- NAVBAR -->
@@ -76,6 +56,7 @@
         <h1>Noticias VainCE</h1>
     </div>
     <p></p>
+
     <?php
     include '../admin/noticias/manejonoticias.php';
     $noticias = array();
@@ -105,6 +86,7 @@
     <?php
     }
     ?>
+
     <!-- CONTENIDO -->
 
     <!-- Footer -->
