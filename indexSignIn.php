@@ -1,6 +1,6 @@
 <?php
 
-include_once '../vaince/includes/registro.php';
+include_once 'includes/registro.php';
 
 $registro = new Registro();
 if (isset($_POST['name']) && isset($_POST['apellido']) && isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['passConfirm'])) {
