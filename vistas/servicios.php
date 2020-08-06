@@ -102,7 +102,7 @@
         $name = $reg["name"];
         $key = $reg["key"];
         if (
-            $gratuito["freeChampionIds"][0] == $key || $gratuito["freeChampionIds"][1] == $key || $gratuito["freeChampionIds"][2] == $key
+            $gratuito["freeChampionIds"][6] == $key || $gratuito["freeChampionIds"][1] == $key || $gratuito["freeChampionIds"][2] == $key
             || $gratuito["freeChampionIds"][3] == $key || $gratuito["freeChampionIds"][4] == $key || $gratuito["freeChampionIds"][5] == $key
         ) {
     ?>
