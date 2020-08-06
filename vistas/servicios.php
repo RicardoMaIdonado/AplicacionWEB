@@ -29,7 +29,7 @@
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="/vaince/inicio.html">
+        <a class="navbar-brand" href="https://webvaince.herokuapp.com/inicio.html">
             <div style="font-family:monaco;font-size:larger">VAINCE</div>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/vaince/controlador/Index.php">
+                    <a class="nav-link" href="controlador/Index.php">
                         <div style="color:white;">Objetos</div>
                     </a>
                 </li>
@@ -69,13 +69,13 @@
             <form class="form-inline my-2 my-lg-0">
                 <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button"
                     onclick="location.href='../indexLogin.php'">
-                    <img src="/vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
+                    <img src="user.png" style="max-width: 20px; max-height: 20px;">
                     Iniciar Sesion
                 </button>
                 &nbsp
                 <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button"
                     onclick="location.href='../indexSignIn.php'">
-                    <img src="/vaince/Iconos/signin.png" style="max-width: 20px; max-height: 20px;">
+                    <img src="signin.png" style="max-width: 20px; max-height: 20px;">
                     Registrarse
                 </button>
             </form>
