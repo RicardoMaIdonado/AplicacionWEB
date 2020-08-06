@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="/vaince/Pie.css">
+    <link rel="stylesheet" href="../Pie.css">
     <title>VAINCE</title>
 </head>
 
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="/vaince/inicio.html">
+        <a class="navbar-brand" href="https://webvaince.herokuapp.com/inicio.html">
             <div style="font-family:monaco;font-size:larger">VAINCE</div>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,13 +24,13 @@
 
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='/vaince/indexLogin.php'">
-                    <img src="/vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
+                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='../indexLogin.php'">
+                    <img src="user.png" style="max-width: 20px; max-height: 20px;">
                     Iniciar Sesion
                 </button>
                 &nbsp
-                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='/vaince/indexSignIn.php'">
-                    <img src="/vaince/Iconos/signin.png" style="max-width: 20px; max-height: 20px;">
+                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='../indexSignIn.php'">
+                    <img src="signin.png" style="max-width: 20px; max-height: 20px;">
                     Registrarse
                 </button>
             </form>
@@ -134,7 +134,7 @@
     </div>
     <!-- CONTENIDDO -->
     <div class="d-flex justify-content-center">
-        <p> <i> Ya tienes una cuenta? </i> Ingresa <a href="indexLogin.php"> aquí</a></p>
+        <p> <i> Ya tienes una cuenta? </i> Ingresa <a href="../indexLogin.php"> aquí</a></p>
     </div>
     <!-- Footer -->
     <footer class="page-footer font-small mdb-color darken-3 pt-4">
@@ -147,15 +147,15 @@
         <div class="colum2">
             <div class="information">
                 <a href="https://www.facebook.com/vainglorygame" target="_blank">
-                    <img src="/vaince/Iconos/facebook.png" alt=""></a>
+                    <img src="facebook.png" alt=""></a>
             </div>
             <div class="information">
                 <a href="https://twitter.com/vainglory?lang=es" target="_blank">
-                    <img src="/vaince/Iconos/twitter.png" alt=""></a>
+                    <img src="twitter.png" alt=""></a>
             </div>
             <div class="information">
                 <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ" target="_blank">
-                    <img src="/vaince/Iconos/youtube.png" alt=""></a>
+                    <img src="youtube.png" alt=""></a>
             </div>
         </div>
     </footer>
