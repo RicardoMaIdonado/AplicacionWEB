@@ -30,7 +30,7 @@
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="/vaince/inicio.html">
+        <a class="navbar-brand" href="https://webvaince.herokuapp.com/inicio.html">
             <div style="font-family:monaco;font-size:larger">VAINCE</div>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/vaince/controlador/Index.php">
+                    <a class="nav-link" href="controlador/Index.php">
                         <div style="color:white;">Objetos</div>
                     </a>
                 </li>
@@ -161,7 +161,7 @@
         <form action="https://www.paypal.com/cgi-bin/webscr" target="_blank" method="post" align="center">
             <input type="hidden" name="cmd" value="_s-xclick">
             <input type="hidden" name="hosted_button_id" value="2T7L3SFL2EBYJ">
-            <input type="image" src="/vaince/Iconos/donate.png" border="0" width="105px" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <input type="image" src="donate.png" border="0" width="105px" name="submit" alt="PayPal - The safer, easier way to pay online!">
             <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
         </form>
     </div>
