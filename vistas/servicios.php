@@ -94,7 +94,7 @@
     $apilol = "RGAPI-cc519022-325d-46c7-8e86-628425e851de";
     $uri_relativa = "https://la1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=".$apilol;
     $gratuito = json_decode(file_get_contents($uri_relativa), true);
-    $path = "http://127.0.0.1/vaince/dragontail/10.10.3224670/data/es_MX/champion.json";
+    $path = "../dragontail/10.10.3224670/data/es_MX/champion.json";
     $info = json_decode(file_get_contents($path), true);
     foreach ($info["data"] as $reg) {
         $id = $reg["id"]; //esto son los nombres no los #id!
@@ -121,7 +121,7 @@
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $name ?></h5>
                             <?php
-                            $path2 = "http://127.0.0.1/vaince/dragontail/10.10.3224670/data/es_MX/champion/" . $id . ".json";
+                            $path2 = "../dragontail/10.10.3224670/data/es_MX/champion/" . $id . ".json";
                             $info2 = json_decode(file_get_contents($path2), true);
                             foreach ($info2["data"] as $reg2) {
                                 $idsito = $reg2["id"];
