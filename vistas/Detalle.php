@@ -66,17 +66,17 @@ $_SESSION['pro'] = $objeto->nombre;
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/indexLogin.php?op=0&niv=0">
+                    <a class="nav-link" href="/vaince/indexLogin.php?op=0&niv=0">
                         <div style="color:white;">Objetos</div>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=1">
+                    <a class="nav-link" href="nuevo.php?nueva=1">
                         <div style="color:white;">Noticias</div>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=0">
+                    <a class="nav-link" href="nuevo.php?nueva=0">
                         <div style="color:white;">Comunidad</div>
                     </a>
                 </li>
@@ -85,12 +85,20 @@ $_SESSION['pro'] = $objeto->nombre;
                 <div id="botonP" class="btn-group" role="group" aria-label="Button group with nested dropdown" style="margin-left: auto;">
                     <div class="btn-group" role="group">
                         <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="../Iconos/user.png" style="max-width: 20px; max-height: 20px;">
+                            <?php
+                            if (isset($_SESSION['user_image'])) {
+                                echo '<img src="' . $_SESSION["user_image"] . '" style="max-width: 20px; max-height: 20px;" />';
+                            } else {
+                            ?>
+                                <img src="/vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
+                            <?php
+                            }
+                            ?>
                             <?php echo $user->getName(); ?>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item" href="http://localhost/vaince/vistas/nuevo.php?nueva=3">Perfil</a>
-                            <a class="dropdown-item" href="http://localhost/vaince/includes/logout.php">Cerrar Sesión</a>
+                            <a class="dropdown-item" href="nuevo.php?nueva=3">Perfil</a>
+                            <a class="dropdown-item" href="/vaince/includes/logout.php">Cerrar Sesión</a>
 
                         </div>
                     </div>
@@ -109,7 +117,7 @@ $_SESSION['pro'] = $objeto->nombre;
     <br>
     <br>
     <br>
-    <h2 align="center">Detalle de Compra</h2>
+    <h2 align="center">Detalle del Pedido</h2>
     <div style="min-height: 8vh;"></div>
 
     <div class="container d-flex justify-content-center">

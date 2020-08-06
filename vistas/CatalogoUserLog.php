@@ -45,32 +45,41 @@ $lista = $_SESSION['lista'];
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/indexLogin.php?op=0&niv=0">
+                    <a class="nav-link" href="/vaince/indexLogin.php?op=0&niv=0">
                         <div style="color:white;">Objetos</div>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=1">
+                    <a class="nav-link" href="/vaince/vistas/nuevo.php?nueva=1">
                         <div style="color:white;">Noticias</div>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=0">
+                    <a class="nav-link" href="/vaince/vistas/nuevo.php?nueva=0">
                         <div style="color:white;">Comunidad</div>
                     </a>
                 </li>
+               
             </ul>
             <div class="form-inline my-2 my-lg-0">
 
                 <div id="botonP" class="btn-group" role="group" aria-label="Button group with nested dropdown" style="margin-left: auto;">
                     <div class="btn-group" role="group">
                         <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="../vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
+                            <?php
+                            if (isset($_SESSION['user_image'])) {
+                                echo '<img src="' . $_SESSION["user_image"] . '" style="max-width: 20px; max-height: 20px;" />';
+                            } else {
+                            ?>
+                                <img src="../vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
+                            <?php
+                            }
+                            ?>
                             <?php echo $user->getName(); ?>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item" href="http://localhost/vaince/vistas/nuevo.php?nueva=3">Perfil</a>
-                            <a class="dropdown-item" href="http://localhost/vaince/includes/logout.php">Cerrar Sesión</a>
+                            <a class="dropdown-item" href="/vaince/vistas/nuevo.php?nueva=3">Perfil</a>
+                            <a class="dropdown-item" href="/vaince/includes/logout.php">Cerrar Sesión</a>
 
                         </div>
                     </div>
@@ -110,7 +119,7 @@ $lista = $_SESSION['lista'];
                 <option value="3">3</option>
             </select>
             &nbsp &nbsp
-            <input type="button" value="Filtrar" class="btn btn-dark" onclick="filtrar()" />
+            <input style="margin-top: 1px;" type="button" value="Filtrar" class="btn btn-dark" onclick="filtrar()" />
             <p></p>
 
             <div id="boton" class="btn-group" role="group" aria-label="Button group with nested dropdown" style="margin-left: auto;">

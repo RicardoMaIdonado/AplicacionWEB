@@ -21,7 +21,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-            <div class="btn-group" role="group">
+                <div class="btn-group" role="group">
                     <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="../iconos/sword_white.png" style="max-width: 20px; max-height: 20px;">
                         Objetos
@@ -155,7 +155,15 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Categoría del objeto</span>
                         </div>
-                        <input name="categoria_objeto" type="number" min="1" max="5" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
+                        <select id="categoria_objeto" type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required name="categoria_objeto" onchange="ShowSelected();">
+                            
+                            <option value="1">Arma</option>
+                            <option value="2">Cristal</option>
+                            <option value="3">Defensa</option>
+                            <option value="4">Utilidad</option>
+                            <option value="5">Consumible</option>
+                        </select>
+                        
                     </div>
                     <br>
                     <div class="input-group input-group-sm mb-3">

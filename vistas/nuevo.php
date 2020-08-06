@@ -25,7 +25,13 @@ if (isset($_SESSION['user'])) {
     $user->setUser($userSession->getCurrentUser());
 
     if ($_REQUEST['nueva'] == 0) {
-        include_once 'comunidadLog.php';
+        if (isset($_REQUEST['buscar'])) {
+            $_SESSION['buscar']=$_REQUEST['buscar'];
+            include_once 'comunidadLog.php';
+        }else {
+            include_once 'comunidadLog.php';
+        }
+        
     } else if ($_REQUEST['nueva'] == 1) {
         include_once 'noticiasLog.php';
     } else if ($_REQUEST['nueva'] == 2) {
@@ -38,7 +44,7 @@ if (isset($_SESSION['user'])) {
         include_once 'Detalle.php';
     } else if ($_REQUEST['nueva'] == 5) {
         if (isset($_REQUEST['corr'])) {
-            if ($_REQUEST['corr']==1) {
+            if ($_REQUEST['corr'] == 1) {
                 echo '<script language="javascript">alert("El informe del carrito ha sido enviado al correo!");</script>';
             }
         }
@@ -69,124 +75,129 @@ if (isset($_SESSION['user'])) {
         include '../includes/pedido.php';
         include '../includes/pedido_objeto.php';
         $pedido = new Pedido();
-        $pedido->ingreso($user->getID(), $_SESSION["totalprecio"]);
-
+        
         $objetoscompra = array();
         $objetoscompra = $_SESSION['objetoscompra'];
-        $cantidadescompra = array();
-        $cantidadescompra = $_SESSION['cantidadescompra'];
-        $precioscompra = array();
-        $precioscompra = $_SESSION['precioscompra'];
+        if (sizeof($objetoscompra) != 0) {
+            $pedido->ingreso($user->getID(), $_SESSION["totalprecio"]);
+            $cantidadescompra = array();
+            $cantidadescompra = $_SESSION['cantidadescompra'];
+            $precioscompra = array();
+            $precioscompra = $_SESSION['precioscompra'];
 
-        $ult = 0;
-        $fec = '';
-        $hor = '';
-        $ultimo = $pedido->getUltimoPedido();
-        foreach ($ultimo as $re) {
-            $ult = $re[0];
-        }
-        $ulte = $pedido->getFechaHoraID($ult);
-        foreach ($ulte as $rele) {
-            $fec = $rele[2];
-            $hor = $rele[3];
-        }
-
-        $idsobjetos = array();
-        $prod = new Producto();
-
-        foreach ($objetoscompra as $nue) {
-            $te = array();
-            $te = $prod->obtenerObjeto($nue);
-            foreach ($te as $oter) {
-                $idsobjetos[] = $oter[0];
+            $ult = 0;
+            $fec = '';
+            $hor = '';
+            $ultimo = $pedido->getUltimoPedido();
+            foreach ($ultimo as $re) {
+                $ult = $re[0];
             }
-        }
+            $ulte = $pedido->getFechaHoraID($ult);
+            foreach ($ulte as $rele) {
+                $fec = $rele[2];
+                $hor = $rele[3];
+            }
 
-        $pedido_objeto = new Pedido_Objeto();
-        for ($i = 0; $i < sizeof($idsobjetos); $i++) {
-            $pedido_objeto->ingreso($ult, $idsobjetos[$i], $cantidadescompra[$i]);
-        }
+            $idsobjetos = array();
+            $prod = new Producto();
 
-        $estats = array();
-        $estats = $_SESSION["estadisticas"];
+            foreach ($objetoscompra as $nue) {
+                $te = array();
+                $te = $prod->obtenerObjeto($nue);
+                foreach ($te as $oter) {
+                    $idsobjetos[] = $oter[0];
+                }
+            }
 
-        include '../plantillaD.php';
+            $pedido_objeto = new Pedido_Objeto();
+            for ($i = 0; $i < sizeof($idsobjetos); $i++) {
+                $pedido_objeto->ingreso($ult, $idsobjetos[$i], $cantidadescompra[$i]);
+            }
 
-        $pdf = new PDF();
-        $pdf->AliasNbPages();
+            $estats = array();
+            $estats = $_SESSION["estadisticas"];
 
-        $pdf->AddPage();
-        $pdf->SetFillColor(1, 232, 232);
-        $pdf->SetFont('Arial', 'B', 12);
+            include '../plantillaD.php';
 
-        $pdf->Cell(70, 6, ' ', 0, 1, 'C');
-        $pdf->Cell(107, 6, utf8_decode('USUARIO: ' . $user->getUser()), 0, 1, 'C');
-        $pdf->Cell(70, 6, ' ', 0, 1, 'C');
+            $pdf = new PDF();
+            $pdf->AliasNbPages();
 
-        $pdf->Cell(130, 6, utf8_decode('FECHA DE COMPRA: ' . $fec . ' a las ' . $hor), 0, 1, 'C');
-        $pdf->Cell(70, 6, ' ', 0, 1, 'C');
-        $pdf->Cell(70, 6, ' ', 0, 1, 'C');
+            $pdf->AddPage();
+            $pdf->SetFillColor(1, 232, 232);
+            $pdf->SetFont('Arial', 'B', 12);
 
-        $pdf->Cell(70, 6, 'Nombre objeto', 1, 0, 'C', 1);
-        $pdf->Cell(30, 6, 'Cantidad', 1, 0, 'C', 1);
-        $pdf->Cell(30, 6, 'Precio', 1, 1, 'C', 1);
+            $pdf->Cell(70, 6, ' ', 0, 1, 'C');
+            $pdf->Cell(107, 6, utf8_decode('USUARIO: ' . $user->getUser()), 0, 1, 'C');
+            $pdf->Cell(70, 6, ' ', 0, 1, 'C');
 
-        for ($j = 0; $j < sizeof($objetoscompra); $j++) {
-            $pdf->Cell(70, 6, $objetoscompra[$j], 1, 0, 'C');
-            $pdf->Cell(30, 6, $cantidadescompra[$j], 1, 0, 'C');
-            $pdf->Cell(30, 6, $precioscompra[$j], 1, 1, 'C');
-        }
+            $pdf->Cell(130, 6, utf8_decode('FECHA DE COMPRA: ' . $fec . ' a las ' . $hor), 0, 1, 'C');
+            $pdf->Cell(70, 6, ' ', 0, 1, 'C');
+            $pdf->Cell(70, 6, ' ', 0, 1, 'C');
 
-        $pdf->Cell(100, 6, 'Total a pagar', 1, 0, 'R', 1);
-        $pdf->Cell(30, 6, $_SESSION["totalprecio"], 1, 1, 'C');
-        $pdf->Cell(70, 6, ' ', 0, 1, 'C');
-        $pdf->Cell(70, 6, ' ', 0, 1, 'C');
-        $pdf->Cell(190, 6, utf8_decode('ESTADÍSTICAS DE LA CONSTRUCCIÓN'), 0, 1, 'C');
-        $pdf->Cell(70, 6, ' ', 0, 1, 'C');
-        for ($h = 0; $h < sizeof($estats); $h++) {
-            $pdf->Cell(185, 6, utf8_decode($estats[$h]), 0, 1, 'C');
-        }
+            $pdf->Cell(70, 6, 'Nombre objeto', 1, 0, 'C', 1);
+            $pdf->Cell(30, 6, 'Cantidad', 1, 0, 'C', 1);
+            $pdf->Cell(30, 6, 'Precio', 1, 1, 'C', 1);
 
-        $pdf->Output('F', 'C:/xampp/htdocs/vaince/Pedidos/Pedido' . $ult . '.pdf');
+            for ($j = 0; $j < sizeof($objetoscompra); $j++) {
+                $pdf->Cell(70, 6, $objetoscompra[$j], 1, 0, 'C');
+                $pdf->Cell(30, 6, $cantidadescompra[$j], 1, 0, 'C');
+                $pdf->Cell(30, 6, $precioscompra[$j], 1, 1, 'C');
+            }
 
-        $mail = new PHPMailer(true);
+            $pdf->Cell(100, 6, 'Total a pagar', 1, 0, 'R', 1);
+            $pdf->Cell(30, 6, $_SESSION["totalprecio"], 1, 1, 'C');
+            $pdf->Cell(70, 6, ' ', 0, 1, 'C');
+            $pdf->Cell(70, 6, ' ', 0, 1, 'C');
+            $pdf->Cell(190, 6, utf8_decode('ESTADÍSTICAS DE LA CONSTRUCCIÓN'), 0, 1, 'C');
+            $pdf->Cell(70, 6, ' ', 0, 1, 'C');
+            for ($h = 0; $h < sizeof($estats); $h++) {
+                $pdf->Cell(185, 6, utf8_decode($estats[$h]), 0, 1, 'C');
+            }
 
-        try {
-            //Server settings
-            $mail->SMTPDebug = 0;                      // Enable verbose debug output
-            $mail->isSMTP();                                            // Send using SMTP
-            $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-            $mail->Username   = 'respaldos602@gmail.com';                     // SMTP username
-            $mail->Password   = 'pandemia411';                               // SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-            $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+            $pdf->Output('F', 'C:/xampp/htdocs/vaince/Pedidos/Pedido' . $ult . '.pdf');
 
-            //Recipients
-            $mail->setFrom('respaldos602@gmail.com', 'Administrador VAINCE');
-            $mail->addAddress($user->getUser());     // Add a recipient
+            $mail = new PHPMailer(true);
 
-            // Attachments
-            $mail->addAttachment('C:/xampp/htdocs/vaince/Pedidos/Pedido' . $ult . '.pdf');         // Add attachments
+            try {
+                //Server settings
+                $mail->SMTPDebug = 0;                      // Enable verbose debug output
+                $mail->isSMTP();                                            // Send using SMTP
+                $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+                $mail->Username   = 'respaldos602@gmail.com';                     // SMTP username
+                $mail->Password   = 'pandemia411';                               // SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+                $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
-            // Content
-            $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = utf8_decode('Factura de pedido realizado en la Plataforma VainCE.');
-            $mail->Body    = utf8_decode('Se adjunta la factura del pedido reciente realizado en nuestra plataforma web VainCE. Además 
+                //Recipients
+                $mail->setFrom('respaldos602@gmail.com', 'Administrador VAINCE');
+                $mail->addAddress($user->getUser());     // Add a recipient
+
+                // Attachments
+                $mail->addAttachment('C:/xampp/htdocs/vaince/Pedidos/Pedido' . $ult . '.pdf');         // Add attachments
+
+                // Content
+                $mail->isHTML(true);                                  // Set email format to HTML
+                $mail->Subject = utf8_decode('Factura de pedido realizado en la Plataforma VainCE.');
+                $mail->Body    = utf8_decode('Se adjunta la factura del pedido reciente realizado en nuestra plataforma web VainCE. Además 
             se añade a esto los detalles de estadísticas de la construcción obtenida en base a su elección. Disfrute su prueba en el juego y no 
             se olvide de visitarnos nuevamente!</b>');
 
-            $mail->send();
-            echo 'El mensaje se envio correctamente';
-        } catch (Exception $e) {
-            echo "Hubo un error al enviar el mensaje: {$mail->ErrorInfo}";
+                $mail->send();
+                echo 'El mensaje se envio correctamente';
+            } catch (Exception $e) {
+                echo "Hubo un error al enviar el mensaje: {$mail->ErrorInfo}";
+            }
+
+
+            unset($_SESSION['listado']);
+            $_SESSION['listado'] = array();
+            //include_once '../vistas/carritoPersonal.php';
+            header('Location: ../indexLogin.php?op=0&niv=0&c=1');
+        }else{
+            header('Location: ../indexLogin.php?op=0&niv=0&c=2');
         }
-
-
-        unset($_SESSION['listado']);
-        $_SESSION['listado'] = array();
-        //include_once '../vistas/carritoPersonal.php';
-        header('Location: ../indexLogin.php?op=0&niv=0&c=1');
+        
     } else if ($_REQUEST['nueva'] == 10) {
         include '../plantillaC.php';
 

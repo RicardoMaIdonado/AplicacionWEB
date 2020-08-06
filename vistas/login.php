@@ -12,23 +12,24 @@
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="http://localhost/vaince/inicio.html"><div style = "font-family:monaco;font-size:larger">VAINCE</div></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="/vaince/inicio.html">
+            <div style="font-family:monaco;font-size:larger">VAINCE</div>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-               
+
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='http://localhost/vaince/indexLogin.php'">
+                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='/vaince/indexLogin.php'">
                     <img src="../vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
                     Iniciar Sesion
                 </button>
                 &nbsp
-                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='http://localhost/vaince/indexSignIn.php'">
+                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='/vaince/indexSignIn.php'">
                     <img src="../vaince/Iconos/signin.png" style="max-width: 20px; max-height: 20px;">
                     Registrarse
                 </button>
@@ -81,12 +82,25 @@
                         </p>
                     </div>
                 </div>
+
+            </form>
+
+            <form action="indexLogin.php" method="POST">
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center">
+                        
+                        <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="submit" name="botonGoogle">
+                            <img src="../vaince/Iconos/google.png" style="max-width: 20px; max-height: 20px;">
+                            Iniciar Sesion con Google
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
     <!-- CONTENIDDO -->
     <div class="d-flex justify-content-center">
-        <p> <i> Aun no te has registrado? </i> Haslo <a href="indexSignIn.php"> aquí</a></p>
+        <p> <i> Aún no te has registrado? </i> Haslo <a href="indexSignIn.php"> aquí</a></p>
     </div>
 
     <div style="min-height: 3vh;"></div>

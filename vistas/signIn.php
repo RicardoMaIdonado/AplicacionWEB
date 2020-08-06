@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="./Pie.css">
+    <link rel="stylesheet" href="/vaince/Pie.css">
     <title>VAINCE</title>
 </head>
 
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="http://localhost/vaince/inicio.html">
+        <a class="navbar-brand" href="/vaince/inicio.html">
             <div style="font-family:monaco;font-size:larger">VAINCE</div>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,13 +24,13 @@
 
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='http://localhost/vaince/indexLogin.php'">
-                    <img src="../vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
+                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='/vaince/indexLogin.php'">
+                    <img src="/vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
                     Iniciar Sesion
                 </button>
                 &nbsp
-                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='http://localhost/vaince/indexSignIn.php'">
-                    <img src="../vaince/Iconos/signin.png" style="max-width: 20px; max-height: 20px;">
+                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='/vaince/indexSignIn.php'">
+                    <img src="/vaince/Iconos/signin.png" style="max-width: 20px; max-height: 20px;">
                     Registrarse
                 </button>
             </form>
@@ -59,32 +59,51 @@
                     echo '<script language="javascript">alert("Las contraseñas no coinciden!");</script>';
                 }
                 if (isset($success)) {
-                    echo '<script language="javascript">alert("Usuario ingresado con éxito");</script>';
+                    echo '<script language="javascript">alert("Usuario registrado con éxito");</script>';
                 }
                 if (isset($errorExist)) {
                     echo '<script language="javascript">alert("El usuario ya existe!");</script>';
                 }
+                if (isset($nonsuccess)) {
+                    echo '<script language="javascript">alert("El correo ingresado no existe!");</script>';
+                }
+                
                 ?>
 
                 <div class="card-body">
                     <div class="container">
                         <h5 class="card-title">Nombre</h5>
                         <div class="input">
-                            <input name="name" required type="text" placeholder="Escribir nombre" />
+                            <input name="name" required type="text" placeholder="Escribir nombre" value="<?php 
+                            if (isset($_SESSION['user_first_name'])) {
+                                echo $_SESSION['user_first_name'];
+                            }
+                            
+                            ?>"/>
                         </div>
                         &nbsp
                     </div>
                     <div class="container">
                         <h5 class="card-title">Apellido</h5>
                         <div class="input">
-                            <input name="apellido" required type="text" placeholder="Escribir apellido" />
+                            <input name="apellido" required type="text" placeholder="Escribir apellido" value="<?php 
+                            if (isset($_SESSION['user_last_name'])) {
+                                echo $_SESSION['user_last_name'];
+                            }
+                            
+                            ?>"/>
                         </div>
                         &nbsp
                     </div>
                     <div class="container">
                         <h5 class="card-title">Email</h5>
                         <div class="input">
-                            <input name="mail" required type="email" placeholder="usuario@mail.com" />
+                            <input name="mail" required type="email" placeholder="usuario@mail.com" value="<?php 
+                            if (isset($_SESSION['user_email_address'])) {
+                                echo $_SESSION['user_email_address'];
+                            }
+                            
+                            ?>"/>
                         </div>
                         &nbsp
                     </div>
@@ -110,10 +129,13 @@
                     </div>
                 </div>
             </form>
+            
         </div>
     </div>
     <!-- CONTENIDDO -->
-
+    <div class="d-flex justify-content-center">
+        <p> <i> Ya tienes una cuenta? </i> Ingresa <a href="indexLogin.php"> aquí</a></p>
+    </div>
     <!-- Footer -->
     <footer class="page-footer font-small mdb-color darken-3 pt-4">
         <div class="colum1">
@@ -125,15 +147,15 @@
         <div class="colum2">
             <div class="information">
                 <a href="https://www.facebook.com/vainglorygame" target="_blank">
-                    <img src="../vaince/Iconos/facebook.png" alt=""></a>
+                    <img src="/vaince/Iconos/facebook.png" alt=""></a>
             </div>
             <div class="information">
                 <a href="https://twitter.com/vainglory?lang=es" target="_blank">
-                    <img src="../vaince/Iconos/twitter.png" alt=""></a>
+                    <img src="/vaince/Iconos/twitter.png" alt=""></a>
             </div>
             <div class="information">
                 <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ" target="_blank">
-                    <img src="../vaince/Iconos/youtube.png" alt=""></a>
+                    <img src="/vaince/Iconos/youtube.png" alt=""></a>
             </div>
         </div>
     </footer>

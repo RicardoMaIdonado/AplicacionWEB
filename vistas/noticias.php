@@ -10,9 +10,9 @@
     <meta charset="UTF-8">
     <title>Vainglory Community Edition</title>
     <style>
-        img {
+        #imge {
             width: 700px;
-            height: 500px;
+          
             margin-right: 20px;
         }
     </style>
@@ -21,7 +21,7 @@
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="http://localhost/vaince/inicio.html">
+        <a class="navbar-brand" href="/vaince/inicio.html">
             <div style="font-family:monaco;font-size:larger">VAINCE</div>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/controlador/Index.php">
+                    <a class="nav-link" href="/vaince/controlador/Index.php">
                         <div style="color:white;">Objetos</div>
                     </a>
                 </li>
@@ -43,6 +43,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="comunidad.php">
                         <div style="color:white;">Comunidad</div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="servicios.php">
+                        <div style="color:white;">Héroes</div>
                     </a>
                 </li>
             </ul>
@@ -58,6 +63,7 @@
     <p></p>
 
     <?php
+    include '../includes/ConexionDB.php';
     include '../admin/noticias/manejonoticias.php';
     $noticias = array();
     $noticias = (new ManejoNoticias())->ListarNoticias();
@@ -70,7 +76,7 @@
                 </div>
                 <div class="card-body">
                     <p style="text-align: justify;">
-                        <img src="../admin/uploads/<?php echo $raw[4] ?>" class="img-fluid" alt="Vainglory Community Edition" align="left" title="Etiqueta publicitaria de Vainglory CE.">
+                        <img id="imge" src="../admin/uploads/<?php echo $raw[4] ?>" class="img-fluid" alt="Vainglory Community Edition" align="left" title="Etiqueta publicitaria de Vainglory CE.">
                         <?php
                         echo $raw[3];
                         ?>

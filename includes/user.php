@@ -68,5 +68,17 @@ class User extends DB
         $passe = md5($passu);
         $query->execute(['passw' => $passe, 'corr' => $correou]);
     }
+
+    public function existe($user)
+    {
+      
+        $query = $this->getConexion()->prepare('SELECT * FROM usuario WHERE correo = :user');
+        $query->execute(['user' => $user]);
+        if ($query->rowCount()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
 }

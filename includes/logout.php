@@ -1,7 +1,12 @@
 <?php
 include_once 'user_session.php';
-
 $userSession = new UserSession();
-$userSession->closeSession();
+if (isset($_SESSION['google'])) {
+    //echo 'Inicio de sesion con google';
+    header("Location: ../logoutGoogle.php");
+} else {
 
-header("Location: ../indexLogin.php");
+    $userSession->closeSession();
+
+    header("Location: ../indexLogin.php");
+}

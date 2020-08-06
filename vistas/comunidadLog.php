@@ -9,19 +9,20 @@
     <title>VAINCE</title>
 
     <style>
-        video {
-            width: 420px;
-            height: 300px;
-        }
-
-        img {
-            width: 550px;
-            height: 300px;
-        }
-
-        .withscroll {
-            overflow-x: scroll;
+        .horizontal-scroll-contenedor {
+            overflow-y: hidden;
+            overflow-x: auto;
+            text-align: left;
             white-space: nowrap;
+            width: auto;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .horizontal-scroll-contenedor>div {
+
+            display: inline-block;
+            margin: 10px 10px 10px 10px;
         }
     </style>
 </head>
@@ -40,31 +41,45 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/indexLogin.php?op=0&niv=0">
+                    <a class="nav-link" href="/vaince/indexLogin.php?op=0&niv=0">
                         <div style="color:white;">Objetos</div>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=1">
+                    <a class="nav-link" href="nuevo.php?nueva=1">
                         <div style="color:white;">Noticias</div>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/nuevo.php?nueva=0">
+                    <a class="nav-link" href="nuevo.php?nueva=0">
                         <div style="color:white;">Comunidad</div>
                     </a>
                 </li>
+              
             </ul>
             <div class="form-inline my-2 my-lg-0">
                 <div id="botonP" class="btn-group" role="group" aria-label="Button group with nested dropdown" style="margin-left: auto;">
                     <div class="btn-group" role="group">
                         <button style="color:white;" id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="../Iconos/user.png" style="max-width: 20px; max-height: 20px;">
-                            <?php echo $user->getName(); ?>
+                            <?php
+                            if (isset($_SESSION['user_image'])) {
+                                echo '<img src="' . $_SESSION["user_image"] . '" style="max-width: 20px; max-height: 20px;" />';
+                            } else {
+                            ?>
+                                <img src="/vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
+                            <?php
+                            }
+                            ?>
+
+                            <?php
+
+                            echo $user->getName();
+
+                            ?>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item" href="http://localhost/vaince/vistas/nuevo.php?nueva=3">Perfil</a>
-                            <a class="dropdown-item" href="http://localhost/vaince/includes/logout.php">Cerrar Sesión</a>
+                            <a class="dropdown-item" href="nuevo.php?nueva=3">Perfil</a>
+                            <a class="dropdown-item" href="/vaince/includes/logout.php">Cerrar Sesión</a>
 
                         </div>
                     </div>
@@ -80,6 +95,7 @@
     </nav>
     <!-- NAVBAR -->
 
+    <p></p>
     <!-- Contenido -->
     <p></p>
     <div class="d-flex justify-content-center">
@@ -92,56 +108,98 @@
                 <h3>Videos destacados</h3>
             </div>
             <div class="card-body">
-                <div class="form withscroll">
-                    <table width="300" cellspacing="1" cellspacing="1" cellpadding="3">
-                        <tr>
-                            <td>
-                                <video src="./Videos/1.mp4" controls></video>
-                                <video src="./Videos/2.mp4" controls></video>
-                                <video src="./Videos/4.mp4" controls></video>
-                                <video src="./Videos/5.mp4" controls></video>
-                                <video src="./Videos/3.mp4" controls></video>
-                                <video src="./Videos/6.mp4" controls></video>
-                            </td>
-                        </tr>
-                    </table>
+                <div class="horizontal-scroll-contenedor">
+
+
+                    <?php
+                    //$API_KEY = "AIzaSyA38ZHKVV9slEstCqXJtVZvFHcPXOwTpqM";
+                    $CHANNEL_ID = "UCAuhvPegawFqaywNw0P7fEQ";
+                    $MAX_RESULT = 10;
+                    $uri_relativa = 'https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCAuhvPegawFqaywNw0P7fEQ&maxResults=10&order=date&key=' . $API_KEY;
+                    $video_lista = json_decode(file_get_contents($uri_relativa), true);
+
+                    echo "<br>";
+                    for ($id = 0; $id < sizeof($video_lista['items']); $id++) {
+                    ?>
+                        <div class="embed-responsive embed-responsive-16by9 mb-4">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $video_lista['items'][$id]['id']['videoId'] ?>" allowfullscreen></iframe>
+                        </div>
+                    <?php
+                    }
+                    ?>
+
+
+
+
                 </div>
             </div>
-
         </div>
+        <br>
+
+
+
+        <p></p>
+
+        <script>
+            function buscar() {
+                location = "nuevo.php?nueva=0&buscar=" + document.getElementById("buscador").value;
+
+            }
+        </script>
 
         <div class="card text-white bg-secondary mb-3">
             <div class="card-header">
                 <h3>Imagenes detacadas</h3>
-            </div>
-            <div class="card-body">
-                <div class="form withscroll">
-                    <table width="300" cellspacing="1" cellspacing="2" cellpadding="3">
-                        <tr>
-                            <td>
-                                <img src="./Imagenes/8.jpeg"></img>
-                                <img src="./Imagenes/3.jpeg"></img>
-                                <img src="./Imagenes/2.jpeg"></img>
-                                <img src="./Imagenes/4.jpeg"></img>
-                                <img src="./Imagenes/5.jpeg"></img>
-                                <img src="./Imagenes/6.jpeg"></img>
-                                <img src="./Imagenes/7.jpeg"></img>
-                                <img src="./Imagenes/1.jpeg"></img>
-                                <img src="./Imagenes/9.jpeg"></img>
-                                <img src="./Imagenes/10.jpeg"></img>
-
-                            </td>
-                        </tr>
-                    </table>
+                <div class="input-group mb-3">
+                    <input class="form-control" type="text" name="q" id="buscador" value="<?php
+                                                                                            if (isset($_SESSION['buscar'])) {
+                                                                                                echo $_SESSION['buscar'];
+                                                                                            } else {
+                                                                                                echo "vainglory";
+                                                                                            } ?>" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-light" type="button" id="button-addon2" onclick="buscar()">BUSCAR</button>
+                    </div>
                 </div>
             </div>
+            <div class="card-body">
+                <div class="horizontal-scroll-contenedor">
+                    <?php
+                    $img_pattern = '/<img[^>]+>/i';
+                    //$datos = array();
+                    if (isset($_REQUEST['buscar'])) {
+                        $word = $_REQUEST['buscar'];
+                    } else {
+                        $word = "vainglory";
+                    }
 
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_URL, "https://www.google.com.mx/search?q=" . urlencode($word) . "&source=lnms&tbm=isch");
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                    $curlout = curl_exec($ch);
+                    curl_close($ch);
+                    preg_match_all($img_pattern, $curlout, $img_tags);
+                    for ($id = 1; $id < sizeof($img_tags[0]); $id++) {
+                    ?>
+                        <a target="_blank" href="https://www.google.com.mx/search?q=<?php echo urlencode($word) ?>&source=lnms&tbm=isch">
+                            <?php echo $img_tags[0][$id]; ?>
+                        </a>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
-
-
-
-
+        <br>
+        <h3 align="center"><i>Apóyanos para continuar desarrollando...</i></h3>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" align="center">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="2T7L3SFL2EBYJ">
+            <input type="image" src="/vaince/Iconos/donate.png" border="0" width="105px" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+        </form>
     </div>
+
     <!-- Contenido -->
 
     <!-- Footer -->

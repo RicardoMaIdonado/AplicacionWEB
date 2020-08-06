@@ -76,7 +76,7 @@ foreach ($lista as $row) {
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand"><div style = "font-family:monaco;font-size:larger">VAINCE</div></a>
+        <a class="navbar-brand" href="/vaince/inicio.html"><div style = "font-family:monaco;font-size:larger" >VAINCE</div></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -85,13 +85,18 @@ foreach ($lista as $row) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/controlador/Index.php"><div style="color:white;">Objetos</div></a>
+                    <a class="nav-link" href="/vaince/controlador/Index.php"><div style="color:white;">Objetos</div></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/noticias.php"><div style="color:white;">Noticias</div></a>
+                    <a class="nav-link" href="noticias.php"><div style="color:white;">Noticias</div></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/vaince/vistas/comunidad.php"><div style="color:white;">Comunidad</div></a>
+                    <a class="nav-link" href="comunidad.php"><div style="color:white;">Comunidad</div></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="servicios.php">
+                        <div style="color:white;">Héroes</div>
+                    </a>
                 </li>
             </ul>
             
