@@ -12,7 +12,7 @@
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="/vaince/inicio.html">
+        <a class="navbar-brand" href="https://webvaince.herokuapp.com/inicio.html">
             <div style="font-family:monaco;font-size:larger">VAINCE</div>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,13 +24,13 @@
 
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='/vaince/indexLogin.php'">
-                    <img src="../vaince/Iconos/user.png" style="max-width: 20px; max-height: 20px;">
+                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='https://webvaince.herokuapp.com/indexLogin.php'">
+                    <img src="user.png" style="max-width: 20px; max-height: 20px;">
                     Iniciar Sesion
                 </button>
                 &nbsp
-                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='/vaince/indexSignIn.php'">
-                    <img src="../vaince/Iconos/signin.png" style="max-width: 20px; max-height: 20px;">
+                <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button" onclick="location.href='https://webvaince.herokuapp.com/indexSignIn.php'">
+                    <img src="signin.png" style="max-width: 20px; max-height: 20px;">
                     Registrarse
                 </button>
             </form>
@@ -90,7 +90,7 @@
                     <div class="d-flex justify-content-center">
                         
                         <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="submit" name="botonGoogle">
-                            <img src="../vaince/Iconos/google.png" style="max-width: 20px; max-height: 20px;">
+                            <img src="google.png" style="max-width: 20px; max-height: 20px;">
                             Iniciar Sesion con Google
                         </button>
                     </div>
@@ -100,7 +100,7 @@
     </div>
     <!-- CONTENIDDO -->
     <div class="d-flex justify-content-center">
-        <p> <i> Aún no te has registrado? </i> Haslo <a href="indexSignIn.php"> aquí</a></p>
+        <p> <i> Aún no te has registrado? </i> Haslo <a href="https://webvaince.herokuapp.com/indexSignIn.php"> aquí</a></p>
     </div>
 
     <div style="min-height: 3vh;"></div>
@@ -115,15 +115,15 @@
         <div class="colum2">
             <div class="information">
                 <a href="https://www.facebook.com/vainglorygame" target="_blank">
-                    <img src="../vaince/Iconos/facebook.png" alt=""></a>
+                    <img src="Iconos/facebook.png" alt=""></a>
             </div>
             <div class="information">
                 <a href="https://twitter.com/vainglory?lang=es" target="_blank">
-                    <img src="../vaince/Iconos/twitter.png" alt=""></a>
+                    <img src="Iconos/twitter.png" alt=""></a>
             </div>
             <div class="information">
                 <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ" target="_blank">
-                    <img src="../vaince/Iconos/youtube.png" alt=""></a>
+                    <img src="Iconos/youtube.png" alt=""></a>
             </div>
         </div>
     </footer>
