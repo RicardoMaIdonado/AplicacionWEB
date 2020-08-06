@@ -91,7 +91,7 @@
 
     <?php
     //SE DEBE ACTUALIZAR LA CLAVE
-    $apilol = "RGAPI-fa18c568-ad82-4248-b887-0397dc8bbc2c";
+    $apilol = "RGAPI-cc519022-325d-46c7-8e86-628425e851de";
     $uri_relativa = "https://la1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=".$apilol;
     $gratuito = json_decode(file_get_contents($uri_relativa), true);
     $path = "http://127.0.0.1/vaince/dragontail/10.10.3224670/data/es_MX/champion.json";
