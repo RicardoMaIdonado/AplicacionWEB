@@ -27,7 +27,7 @@ $lista = $_SESSION['lista'];
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="/vaince/inicio.html">
+        <a class="navbar-brand" href="https://webvaince.herokuapp.com/inicio.html">
             <div style="font-family:monaco;font-size:larger">VAINCE</div>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +37,7 @@ $lista = $_SESSION['lista'];
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/vaince/controlador/Index.php">
+                    <a class="nav-link" href="../controlador/Index.php">
                         <div style="color:white;">Objetos</div>
                     </a>
                 </li>
@@ -200,15 +200,15 @@ $lista = $_SESSION['lista'];
         <div class="colum2">
             <div class="information">
                 <a href="https://www.facebook.com/vainglorygame" target="_blank">
-                    <img src="../Iconos/facebook.png" alt=""></a>
+                    <img src="facebook.png" alt=""></a>
             </div>
             <div class="information">
                 <a href="https://twitter.com/vainglory?lang=es" target="_blank"> 
-                    <img src="../Iconos/twitter.png" alt=""></a>
+                    <img src="twitter.png" alt=""></a>
             </div>
             <div class="information">
                 <a href="https://www.youtube.com/channel/UCAuhvPegawFqaywNw0P7fEQ" target="_blank">
-                    <img src="../Iconos/youtube.png" alt=""></a>
+                    <img src="youtube.png" alt=""></a>
             </div>
         </div>
     </footer>
