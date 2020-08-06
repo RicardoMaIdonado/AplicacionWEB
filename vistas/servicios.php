@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="noticias.php">
+                    <a class="nav-link" href="https://webvaince.herokuapp.com/vistas/noticias.php">
                         <div style="color:white;">Noticias</div>
                     </a>
                 </li>
