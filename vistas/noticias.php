@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="controlador/Index.php">
+                    <a class="nav-link" href="../controlador/Index.php">
                         <div style="color:white;">Objetos</div>
                     </a>
                 </li>
