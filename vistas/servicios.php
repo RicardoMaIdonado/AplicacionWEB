@@ -29,7 +29,7 @@
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="https://webvaince.herokuapp.com/inicio.html">
+        <a class="navbar-brand" href="https://localhost/vaince/inicio.html">
             <div style="font-family:monaco;font-size:larger">VAINCE</div>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,22 +39,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="../controlador/Index.php">
+                    <a class="nav-link" href="https://localhost/vaince/controlador/Index.php">
                         <div style="color:white;">Objetos</div>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://webvaince.herokuapp.com/vistas/noticias.php">
+                    <a class="nav-link" href="https://localhost/vaince/vistas/noticias.php">
                         <div style="color:white;">Noticias</div>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="comunidad.php">
+                    <a class="nav-link" href="https://localhost/vaince/vistas/comunidad.php">
                         <div style="color:white;">Comunidad</div>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="servicios.php">
+                    <a class="nav-link" href="https://webvaince.herokuapp.com/vistas/servicios.php">
                         <div style="color:white;">Héroes</div>
                     </a>
                 </li>
@@ -68,13 +68,13 @@
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button"
-                    onclick="location.href='../indexLogin.php'">
+                    onclick="location.href='https://localhost/vaince/indexLogin.php'">
                     <img src="user.png" style="max-width: 20px; max-height: 20px;">
                     Iniciar Sesion
                 </button>
                 &nbsp
                 <button style="color:white;" class="btn btn-outline-secondary my-2 my-sm-0" type="button"
-                    onclick="location.href='../indexSignIn.php'">
+                    onclick="location.href='https://localhost/vaince/indexSignIn.php'">
                     <img src="signin.png" style="max-width: 20px; max-height: 20px;">
                     Registrarse
                 </button>
