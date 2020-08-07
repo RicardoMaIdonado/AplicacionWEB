@@ -111,7 +111,7 @@
                     <div class="card">
                         <div class="embed-responsive embed-responsive-16by9 mb-4">
                             <?php
-                            $API_KEY = "AIzaSyB9Q0j7eqvS1cF-aK1RTdTrl6LcVJamZas";
+                            $API_KEY = "AIzaSyDfNf4tScLLMwigixb5Htjejg8smQ7CpD0";
                             $uri_relativa = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=' . $name . '%20champion%20spotlight&key=' . $API_KEY;
                             $video_lista = json_decode(file_get_contents($uri_relativa), true);
                             $vidID = $video_lista['items'][0]['id']['videoId'];
