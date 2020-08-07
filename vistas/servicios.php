@@ -91,7 +91,7 @@
 
     <?php
     //SE DEBE ACTUALIZAR LA CLAVE
-    $apilol = "RGAPI-cc519022-325d-46c7-8e86-628425e851de";
+    $apilol = "RGAPI-e2f4a61b-91e5-4611-81b8-ff360293f78f";
     $uri_relativa = "https://la1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=".$apilol;
     $gratuito = json_decode(file_get_contents($uri_relativa), true);
     $path = "../dragontail/10.10.3224670/data/es_MX/champion.json";
@@ -111,7 +111,7 @@
                     <div class="card">
                         <div class="embed-responsive embed-responsive-16by9 mb-4">
                             <?php
-                            //$API_KEY = "AIzaSyA38ZHKVV9slEstCqXJtVZvFHcPXOwTpqM";
+                            $API_KEY = "AIzaSyA38ZHKVV9slEstCqXJtVZvFHcPXOwTpqM";
                             $uri_relativa = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=' . $name . '%20champion%20spotlight&key=' . $API_KEY;
                             $video_lista = json_decode(file_get_contents($uri_relativa), true);
                             $vidID = $video_lista['items'][0]['id']['videoId'];
